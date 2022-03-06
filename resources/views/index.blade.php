@@ -13,6 +13,7 @@
                 <div class='diary'>
                     <h2 class='user_id'>{{ $diary->id }}</h2>
                     <p class='body'>{{ $diary->diary }}</p>
+                    <p class='updated_at'>{{ $diary->updated_at}}</p>
                 </div>
             @endforeach
         </div>
