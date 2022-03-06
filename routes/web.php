@@ -14,3 +14,4 @@
 */
 
 Route::get('/','DiaryController@index');
+Route::get('/diaries/create','DiaryController@create');

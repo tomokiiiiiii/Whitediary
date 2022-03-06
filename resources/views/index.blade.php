@@ -8,6 +8,7 @@
     </head>
     <body>
         <h1>日記</h1>
+         <p class='create'>[<a href='/diaries/create'>書く</a>]</p>
         <div class='diaries'>
             @foreach($diaries as $diary)
                 <div class='diary'>

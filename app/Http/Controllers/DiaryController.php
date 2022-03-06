@@ -11,4 +11,9 @@ class DiaryController extends Controller
     {
         return view('index')->with(['diaries' => $diary->getPaginateBylimit()]);
     }
+    
+    public function create()
+    {
+        return view('create');
+    }
 }
