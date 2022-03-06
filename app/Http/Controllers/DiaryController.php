@@ -9,6 +9,6 @@ class DiaryController extends Controller
 {
     public function index(Diary $diary)
     {
-        return $diary->get();
+        return view('index')->with(['diaries' => $diary->get()]);
     }
 }

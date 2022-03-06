@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/diaries','DiaryController@index');
+Route::get('/','DiaryController@index');
