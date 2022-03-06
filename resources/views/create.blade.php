@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>日記</h1>
-        <form action="/diaries" method=and "POST">
+        <form action="/diaries" method="POST">
             {{ csrf_field() }}
             <div class="diary">
                 <h2>日記内容</h2>

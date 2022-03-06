@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -8,18 +9,12 @@
     </head>
     <body>
         <h1>日記</h1>
-         <p class='create'>[<a href='/diaries/create'>書く</a>]</p>
-        <div class='diaries'>
-            @foreach($diaries as $diary)
-                <div class='diary'>
-                    <a href'/diaries/{{$diary->id}}'><h2 class='user_id'>{{ $diary->id }}</h2></a>
+         <div class='diary'>
+                    <h2 class='user_id'>{{ $diary->id }}</h2>
                     <p class='body'>{{ $diary->diary }}</p>
                     <p class='updated_at'>{{ $diary->updated_at}}</p>
                 </div>
-            @endforeach
-        </div>
-        <div class='paginate'>
-        　　{{ $diaries->links() }}
-        </div>
+         </div>
+         <div class='back'>[<a href='/'>戻る</a>]</div>
     </body>
 </html>

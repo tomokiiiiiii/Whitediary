@@ -1,6 +1,6 @@
 <?php
 
-
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,5 +13,9 @@
 |
 */
 
-Route::get('/','DiaryController@index');
-Route::get('/diaries/create','DiaryController@create');
+Route::get('/', 'DiaryController@index');
+Route::get('/diaries/create', 'DiaryController@create');
+Route::get('/diaries/{diary}', 'DiaryController@show')->name('show');
+
+
+Route::post('/diaries', 'DiaryController@store');

@@ -18,7 +18,6 @@ class CreateDiariesTable extends Migration
             $table->timestamps();
             $table->text('diary');
             $table->string('image')->nullable();
-            $table->date('date');
             $table->softDeletes();
         });
     }
