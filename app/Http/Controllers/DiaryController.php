@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Diary;
-use Illuminate\Http\Request;
+use App\Http\Requests\DiaryRequest;
 
 class DiaryController extends Controller
 {
@@ -22,7 +22,7 @@ class DiaryController extends Controller
         return view('create');
     }
     
-    public function store(Request $request, Diary $diary)
+    public function store(DiaryRequest $request, Diary $diary)
     {
         $input = $request['diary'];
         $diary->fill($input)->save();

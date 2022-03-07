@@ -12,7 +12,8 @@
             {{ csrf_field() }}
             <div class="diary">
                 <h2>日記内容</h2>
-                <textarea name="diary[diary]" placeholder="できごと"></textarea>
+                <textarea name="diary[diary]" placeholder="できごと"　value="{{ old('diary.diary') }}"/></textarea>
+                <p class="diary__error" style="color:red">{{ $errors->first('diary.diary') }}</p>
             </div>
             <input type="submit" value="投稿"/>
         </form>
