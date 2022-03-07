@@ -9,6 +9,7 @@ class DiaryController extends Controller
 {
     public function index(Diary $diary)
     {
+        //Auth::user()->name;
         return view('index')->with(['diaries' => $diary->getPaginateBylimit()]);
     }
     
@@ -29,4 +30,5 @@ class DiaryController extends Controller
         $diary=$diary->latest()->first();
         return redirect()->route('show',$diary->id);
     }
+
 }

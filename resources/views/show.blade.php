@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -15,6 +17,7 @@
                     <p class='updated_at'>{{ $diary->updated_at}}</p>
                 </div>
          </div>
-         <div class='back'>[<a href='/'>戻る</a>]</div>
+         <div class='back'>[<a href='/'>日記画面</a>]</d
     </body>
 </html>
+@endsection
