@@ -12,13 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'DiaryController@index');
-Route::get('/diaries/create', 'DiaryController@create');
-Route::get('/diaries/{diary}', 'DiaryController@show')->name('show');
-
-
-Route::post('/diaries', 'DiaryController@store');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function(){
+   Route::get('/', 'DiaryController@index');
+   Route::get('/diaries/create', 'DiaryController@create');
+   Route::get('/diaries/{diary}', 'DiaryController@show')->name('show');
+   Route::post('/diaries', 'DiaryController@store');
+   Route::get('/home', 'HomeController@index')->name('home');
+});
+Route::get('/mypage/{user_id}', 'UserController@index');

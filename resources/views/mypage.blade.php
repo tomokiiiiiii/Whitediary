@@ -1,4 +1,4 @@
-@extends('layouts.app')　　　　　　　　　　　　　　　　　　
+@extends('layouts.app')　//extends body tagnaidekanannde?　　　　　　　　　　　　　　　　　
 
 @section('content')
 <!DOCTYPE html>
@@ -11,18 +11,18 @@
     </head>
     <body>
         <h1>日記</h1>
-         <p class='create'>[<a href='/diaries/create'>書く</a>]</p>
-        <div class='diaries'>
+        <div class='own_diaries'>
+            <h2>{{ $user->name }}</h2> 
             @foreach($diaries as $diary)
-                <a href="/mypage/{{$diary->user->id}}">{{ $diary->user->name  }}</a>
                 <div class='diary'>
                     <p class='body'>{{ $diary->diary }}</p>
                     <p class='updated_at'>{{ $diary->updated_at}}</p>
                 </div>
             @endforeach
         </div>
+        <p class='back'>[<a href='/'>日記画面</a>]</p>
         <div class='paginate'>
-        　　{{ $diaries->links() }}
+        　　{{ $own_diaries->links() }}
         </div>
     </body>
 </html>
