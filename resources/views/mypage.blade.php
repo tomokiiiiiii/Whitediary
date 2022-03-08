@@ -1,4 +1,4 @@
-@extends('layouts.app')　//extends body tagnaidekanannde?　　　　　　　　　　　　　　　　　
+@extends('layouts.app')　　　　　　　　　　　　　　　　　
 
 @section('content')
 <!DOCTYPE html>
@@ -18,11 +18,18 @@
                     <p class='body'>{{ $diary->diary }}</p>
                     <p class='updated_at'>{{ $diary->updated_at}}</p>
                 </div>
+        　　@if($diary->user_id==$auth)
+             <form action="/mypage/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post" style="display:inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit">記事削除</button> 
+             </form>
+            @endif
             @endforeach
         </div>
         <p class='back'>[<a href='/'>日記画面</a>]</p>
         <div class='paginate'>
-        　　{{ $own_diaries->links() }}
+        　　{{ $diaries->links() }}
         </div>
     </body>
 </html>
