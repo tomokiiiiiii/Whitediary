@@ -46,7 +46,7 @@ class User extends Authenticatable
     
     public function getOwnPaginateByLimit(int $limit_count = 5)
     {
-    return $this::with('diaries')->find(Auth::id())->diaries()->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    return $this->diaries()->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     public function diary()
     {
