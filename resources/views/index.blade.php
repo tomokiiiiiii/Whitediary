@@ -19,6 +19,9 @@
                     <p class='body'>{{ $diary->diary }}</p>
                     <p class='updated_at'>{{ $diary->updated_at}}</p>
                 </div>
+                @if ($diary->image_path)
+                <img src="{{ $diary->image_path }}">
+                @endif
             @endforeach
         </div>
         <div class='paginate'>

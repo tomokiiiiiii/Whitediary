@@ -17,7 +17,11 @@
                     <p class='updated_at'>{{ $diary->updated_at}}</p>
                 </div>
          </div>
+         @if ($diary->image_path)
+                <img src="{{ $diary->image_path }}">
+         @endif
          <div class='back'>[<a href='/'>日記画面</a>]</d
     </body>
 </html>
 @endsection
+

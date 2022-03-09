@@ -20,7 +20,7 @@
             </div>
             <div class="image">
                 <h2>写真</h2>
-                <input type="file" name="diary[image]"　accept=".png, .jpg, .jpeg, .pdf, .doc">
+               <input type="file" name="image">
             </div>
             <input type="submit" value="投稿"/>
         </form>

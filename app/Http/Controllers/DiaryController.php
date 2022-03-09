@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Diary;
 use App\Http\Requests\DiaryRequest;
-
+use Storage;
 
 class DiaryController extends Controller
 {
@@ -30,6 +30,10 @@ class DiaryController extends Controller
         $input +=['user_id'=>$request->user()->id];
         $diary->fill($input)->save();
         $diary=$diary->latest()->first();
+        $image = $request->file('image');
+        $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+        $diary->image_path = Storage::disk('s3')->url($path);
+        $diary->save();
         return redirect()->route('show',$diary->id);
     }
 
