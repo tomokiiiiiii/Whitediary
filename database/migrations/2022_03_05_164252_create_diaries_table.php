@@ -18,7 +18,7 @@ class CreateDiariesTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->text('diary');
-            $table->string('image')->nullable();
+            $table->string('image_path')->nullable();
             $table->softDeletes();
         });
     }

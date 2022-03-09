@@ -11,7 +11,6 @@ class UserController extends Controller
   public function index($user_id, User $user)
     {
         $user=User::find($user_id);//where
-        $diaries=$user->diary;//リレーション？？
         $auth=Auth::user()->id;
     return view('mypage')->with([
         'user'=> $user,
