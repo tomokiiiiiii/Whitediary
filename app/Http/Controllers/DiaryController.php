@@ -28,11 +28,12 @@ class DiaryController extends Controller
     {
         $input = $request['diary'];
         $input +=['user_id'=>$request->user()->id];
-        $diary->fill($input)->save();
-        $diary=$diary->latest()->first();
+        $diary->fill($input);
         $image = $request->file('image');
+        if(isset($image)){
         $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
         $diary->image_path = Storage::disk('s3')->url($path);
+        }
         $diary->save();
         return redirect()->route('show',$diary->id);
     }

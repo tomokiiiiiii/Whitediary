@@ -25,6 +25,9 @@
                 <button type="submit">記事削除</button> 
              </form>
             @endif
+            @if ($diary->image_path)
+                <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
+            @endif
             @endforeach
         </div>
         <p class='back'>[<a href='/'>日記画面</a>]</p>
