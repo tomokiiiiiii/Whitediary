@@ -52,4 +52,18 @@ class User extends Authenticatable
     {
     return $this->hasMany('App\Diary');
     }
+    
+    // フォロワーからフォロー
+    public function followUsers()
+    {
+        return $this->belongsToMany('App\User', 'follow_users', 'followed_user_id', 'following_user_id');
+    }
+
+    // フォローからフォロワー
+    public function follows()
+    {
+        return $this->belongsToMany('App\User', 'follow_users', 'following_user_id', 'followed_user_id');
+    }
+    
+
 }

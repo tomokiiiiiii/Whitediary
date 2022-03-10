@@ -1,15 +1,6 @@
 @extends('layouts.app')　　　　　　　　　　　　　　　　　　
 
 @section('content')
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>みんなの日記</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-    </head>
-    <body>
         <h1>日記</h1>
         <form action="/diaries" method="POST"　enctype="multipart/form-data">
             {{ csrf_field() }}
@@ -25,6 +16,4 @@
             <input type="submit" value="投稿"/>
         </form>
         <div class="back">[<a href="/">戻る</a>]</div>
-    </body>
-</html>
 @endsection
