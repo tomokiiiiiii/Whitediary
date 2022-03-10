@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>日記</h1>
-        <p class='follow'>[<a href='/seach'>友達を追加</a>]</p>
+        <p class='follow'>[<a href='/search'>友達を追加</a>]</p>
         <p class='mypage'><a href="/mypage/{{Auth::id()}}">自分のページ</a></p>
 　　　　<p class='create'>[<a href='/diaries/create'>書く</a>]</p>
         <div class='diaries'>

@@ -21,8 +21,8 @@ Route::group(['middleware' => ['auth']], function(){
    Route::get('/home', 'HomeController@index')->name('home');
    Route::get('/mypage/{user_id}', 'UserController@index');
    Route::delete('/mypage/{diary_id}', 'UserController@delete');
-   Route::get('/seach','UserController@seach');
-   Route::post('/seach','UserController@follow');
+   Route::get('/search','UserController@search');
+   Route::post('/search','UserController@follow');
    
 });
 

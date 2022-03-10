@@ -27,9 +27,9 @@ class UserController extends Controller
     return redirect('/');
     }
     
-  public function seach()
+  public function search()
   {
-    return view('seach');
+    return view('search');
   }
   
   public function follow(Request $request)
@@ -42,7 +42,7 @@ class UserController extends Controller
         $user->follows()->attach(['followed_user_id'=>$user_id],['following_user_id'=>$user->id]);
         return redirect('/');
         }else{
-          return redirect('/seach');
+          return redirect('/search');
         }
   }
 }

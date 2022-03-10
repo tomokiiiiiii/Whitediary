@@ -1,7 +1,7 @@
 @extends('layouts.app')　　　　　　　　　　　　　　　　　
 
 @section('content')
-    <form action="/seach" method="POST">
+    <form action="/search" method="POST">
             {{ csrf_field() }}
             <div class="search">
                 <h2>友達検索</h2>
