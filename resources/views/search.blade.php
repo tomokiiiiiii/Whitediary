@@ -9,6 +9,7 @@
                 <input name="search[name]" placeholder="name"/>
             </div>
             <input type="submit" value="OK"/>
+            <div class='back'>[<a href='/'>日記画面</a>]</div>
         </form>
        
 

@@ -21,11 +21,11 @@
                 <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
             @endif
             @endforeach
+            <div class='back'>[<a href='/list'>リスト</a>]</div>
         </div>
         <p class='back'>[<a href='/'>日記画面</a>]</p>
         <div class='paginate'>
         　　{{ $diaries->links() }}
         </div>
-    </body>
 
 @endsection

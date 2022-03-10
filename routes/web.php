@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth']], function(){
    Route::delete('/mypage/{diary_id}', 'UserController@delete');
    Route::get('/search','UserController@search');
    Route::post('/search','UserController@follow');
+   Route::get('/list','UserController@list');
    
 });
 

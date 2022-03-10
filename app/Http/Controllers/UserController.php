@@ -45,4 +45,9 @@ class UserController extends Controller
           return redirect('/search');
         }
   }
+  
+  public function list(User $user)
+  {
+   return view('list')->with(['users' => $user->getPaginateBylimit()]);
+  }
 }
