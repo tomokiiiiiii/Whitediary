@@ -21,7 +21,9 @@
                 <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
             @endif
             @endforeach
-            <div class='back'>[<a href='/list'>リスト</a>]</div>
+            @if($diary->user_id==$auth)
+            <div class='list'>[<a href='/list'>リスト</a>]</div>
+            @endif
         </div>
         <p class='back'>[<a href='/'>日記画面</a>]</p>
         <div class='paginate'>

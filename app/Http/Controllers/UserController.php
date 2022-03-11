@@ -6,14 +6,13 @@ use App\Diary;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+use App\FollowUser;
 
 class UserController extends Controller
 {
     
-  public function index($user_id, User $user)
+  public function index(User $user)
     {
-        $user=User::find($user_id);//where
         $auth=Auth::user()->id;
     return view('mypage')->with([
         'user'=> $user,
@@ -39,15 +38,31 @@ class UserController extends Controller
         $name=$input['name'];
         if( DB::table('users')->where('id',$user_id)->where('name',$name)->exists()){
         $user=Auth::user();
+        //kokodeera-
         $user->follows()->attach(['followed_user_id'=>$user_id],['following_user_id'=>$user->id]);
         return redirect('/');
         }else{
           return redirect('/search');
         }
   }
-  
-  public function list(User $user)
+  public function list(FollowUser $followUser)
   {
-   return view('list')->with(['users' => $user->getPaginateBylimit()]);
+    $user=Auth::user();
+   return view('list')->with(['following_user_ids' => $user]);
+  }
+  
+  public function follows_delete(User $user)
+    {
+      $user_id=Auth::id();
+      $user->followUsers()->detach(['following_user_id'=>$user_id]);
+      // $followUser->delete();
+    
+    return redirect('/list');
+    }
+    
+  public function select_user()
+  {
+    
   }
 }
+

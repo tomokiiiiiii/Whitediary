@@ -17,11 +17,12 @@ class FollowUserController extends Controller
         // return response()->json(['followCount' => $followCount]);
     }
 
-    public function unfollow(User $user) {
-        $follow = FollowUser::where('following_user_id', \Auth::user()->id)->where('followed_user_id', $user->id)->first();
-        $follow->delete();
-        $followCount = count(FollowUser::where('followed_user_id', $user->id)->get());
+    //public function unfollow(User $user) {
+        //$follow = FollowUser::where('following_user_id', \Auth::user()->id)->where('followed_user_id', $user->id)->first();
+        //$follow->delete();
+        //$followCount = count(FollowUser::where('followed_user_id', $user->id)->get());
 
-        return response()->json(['followCount' => $followCount]);
-    }
+        //return response()->json(['followCount' => $followCount]);
+    //}
+    
 }
