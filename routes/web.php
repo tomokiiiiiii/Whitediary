@@ -16,7 +16,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function(){
    Route::get('/', 'DiaryController@index');
    Route::get('/diaries/create', 'DiaryController@create');
-   Route::get('/diaries/{diary}', 'DiaryController@show')->name('show');
+   Route::get('/diaries/{diary}', 'DiaryController@select_user');
    Route::post('/diaries', 'DiaryController@store');
    Route::get('/home', 'HomeController@index')->name('home');
    Route::get('/mypage/{user}', 'UserController@index');
@@ -25,6 +25,11 @@ Route::group(['middleware' => ['auth']], function(){
    Route::post('/search','UserController@follow');
    Route::get('/list','UserController@list');
    Route::delete('/list/{user}','UserController@follows_delete');
+   Route::get('/select','UserController@select_user');
+   Route::post('/select_user','UserController@store');
+   Route::get('/select/{diary}','DiaryController@show');
+   Route::delete('/select_user', 'UserController@cancel');
+   
    
 });
 

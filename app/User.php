@@ -70,5 +70,9 @@ class User extends Authenticatable
         return $this->orderBy('updated_at','DESC')->paginate($limit_count);
         return $this::with('user')->orderBy('updated_at','DESC')->paginate($limit_count);
     }
+    public function selectdiaries()
+    {
+    return $this->belongsToMany('App\Diary');
+    }
 
 }

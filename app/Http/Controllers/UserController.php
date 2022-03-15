@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\FollowUser;
+use App\DiaryUser;
 
 class UserController extends Controller
 {
@@ -48,21 +49,45 @@ class UserController extends Controller
   public function list(FollowUser $followUser)
   {
     $user=Auth::user();
-   return view('list')->with(['following_user_ids' => $user]);
+    return view('list')->with(['following_user_ids' => $user]);
   }
   
   public function follows_delete(User $user)
-    {
-      $user_id=Auth::id();
-      $user->followUsers()->detach(['following_user_id'=>$user_id]);
+  {
+    //外に出す意味は？getbylimit
+    $user_id=Auth::id();
+    $user->followUsers()->detach(['following_user_id'=>$user_id])->getPaginateByLimit();
       // $followUser->delete();
     
     return redirect('/list');
-    }
-    
-  public function select_user()
-  {
-    
   }
+    
+  public function select_user(User $user)
+  {
+    $user=Auth::user();
+    $allowed_users =$user->followUsers()->get();
+    return view('/select')->with(['followed_users_id' => $allowed_users]);
+   
+  }
+  
+  public function store(Request $request)
+  {
+    $select_users= $request->users_array;
+    $user=Auth::user();
+    $all_diaries=$user->diaries();
+    $latestdiary=$all_diaries->orderBy('updated_at','DESC')->limit(1)->first()->id;
+    foreach($select_users as $select_user){
+      $user->selectdiaries()->attach(['diary_id'=>$latestdiary],['user_id'=>$select_user]);
+    }
+    return redirect('/select/'.$latestdiary)->with(['latestdiary' => $latestdiary]);
+    }
+  public function cancel()
+    {
+    $user=Auth::user();
+    $all_diaries=$user->diaries();
+    $latestdiary=$all_diaries->orderBy('updated_at','DESC')->limit(1)->first();
+    $latestdiary->delete();
+    return redirect('/');
+    }
 }
 

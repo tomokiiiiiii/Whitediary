@@ -2,9 +2,10 @@
 
 @section('content')
         <h1>日記</h1>
+        <p class='follow'>[<a href='/search'>友達を追加</a>]</p>
         <div class='own_diaries'>
-            <h2>{{ $user->name }}</h2> 
-            <h4>{{$user->id}}</h4>
+            <h2>{{$user->id}}</h2>
+            <h1>{{ $user->name }}</h1> 
             @foreach($diaries as $diary)
                 <div class='diary'>
                     <p class='body'>{{ $diary->diary }}</p>
@@ -21,7 +22,7 @@
                 <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
             @endif
             @endforeach
-            @if($diary->user_id==$auth)
+            @if($diary->user_id==$auth){{-- 日記が０だとエラー$userから持ってきたい --}}
             <div class='list'>[<a href='/list'>リスト</a>]</div>
             @endif
         </div>

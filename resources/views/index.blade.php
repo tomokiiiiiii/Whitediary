@@ -18,7 +18,7 @@
             @endforeach
         </div>
         <div class='paginate'>
-        　　{{ $diaries->links() }}
+        　　
         </div>
 
 @endsection

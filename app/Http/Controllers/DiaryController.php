@@ -11,7 +11,17 @@ class DiaryController extends Controller
 {
     public function index(Diary $diary)
     {
-        return view('index')->with(['diaries' => $diary->getPaginateBylimit()]);
+        $mydiaries=$diary->where('user_id',Auth::id())->get();
+        $yourdiaries=Auth::user()->selectdiaries()->get();
+        $alldiary=[];
+        foreach($yourdiaries as $yourdiary){
+            array_push($alldiary,$yourdiary);
+        }
+        foreach($mydiaries as $mydiary){
+             array_push($alldiary,$mydiary);
+        }
+        
+        return view('index')->with(['diaries' => $alldiary]);
     }
     
     public function show(Diary $diary)
@@ -35,7 +45,7 @@ class DiaryController extends Controller
         $diary->image_path = Storage::disk('s3')->url($path);
         }
         $diary->save();
-        return redirect()->route('show',$diary->id);
+        return redirect("/select");
     }
 
 }
