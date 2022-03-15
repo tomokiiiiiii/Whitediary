@@ -22,7 +22,7 @@
                 <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
             @endif
             @endforeach
-            @if($diary->user_id==$auth){{-- 日記が０だとエラー$userから持ってきたい --}}
+            @if($user->user_id==$auth){{-- 日記が０だとエラー$userから持ってきたい --}}
             <div class='list'>[<a href='/list'>リスト</a>]</div>
             @endif
         </div>
