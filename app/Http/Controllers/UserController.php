@@ -16,9 +16,9 @@ class UserController extends Controller
     {
         $auth=Auth::user()->id;
     return view('mypage')->with([
-        'user'=> $user,
+        'user'=>$user,
         'auth'=>$auth,
-        'diaries' => $user->getOwnPaginateByLimit()//dounika
+        'diaries' => $user->getOwnPaginateByLimit()
         ]);
     }
   public function delete(Diary $diary_id)
@@ -39,7 +39,6 @@ class UserController extends Controller
         $name=$input['name'];
         if( DB::table('users')->where('id',$user_id)->where('name',$name)->exists()){
         $user=Auth::user();
-        //kokodeera-
         $user->follows()->attach(['followed_user_id'=>$user_id],['following_user_id'=>$user->id]);
         return redirect('/');
         }else{

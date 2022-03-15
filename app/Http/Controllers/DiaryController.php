@@ -13,15 +13,16 @@ class DiaryController extends Controller
     {
         $mydiaries=$diary->where('user_id',Auth::id())->get();
         $yourdiaries=Auth::user()->selectdiaries()->get();
-        $alldiary=[];
+        $alldiaries=[];
         foreach($yourdiaries as $yourdiary){
-            array_push($alldiary,$yourdiary);
+            array_push($alldiaries,$yourdiary);
         }
         foreach($mydiaries as $mydiary){
-             array_push($alldiary,$mydiary);
+             array_push($alldiaries,$mydiary);
         }
-        
-        return view('index')->with(['diaries' => $alldiary]);
+        $alldiaries = collect($alldiaries);
+        $alldiaries = $alldiaries->sortByDesc('updated_at');
+        return view('index')->with(['diaries' => $alldiaries]);
     }
     
     public function show(Diary $diary)

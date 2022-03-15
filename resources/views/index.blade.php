@@ -12,13 +12,13 @@
                     <p class='body'>{{ $diary->diary }}</p>
                     <p class='updated_at'>{{ $diary->updated_at}}</p>
                 </div>
-                @if ($diary->image_path)
+                @if($diary->image_path)
                 <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
                 @endif
             @endforeach
         </div>
         <div class='paginate'>
-        　　
+        　　<!--{ $diaries->links() }}-->
         </div>
 
 @endsection
