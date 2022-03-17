@@ -8,6 +8,7 @@
                 <label>
                     <input type="checkbox" value="{{ $followed_user_id->id }}" name="users_array[]">
                     {{$followed_user_id->name}}</input>
+                    <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
                 </label>
         　　@endforeach
         　　<input type="submit" value="投稿">

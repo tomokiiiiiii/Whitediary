@@ -28,7 +28,6 @@
         </div>
         <p class='back'>[<a href='/'>日記画面</a>]</p>
         <div class='paginate'>
-        　　{{ $diaries->links() }}
+            {{ $diaries->links() }}
         </div>
-
 @endsection

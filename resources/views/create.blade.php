@@ -11,9 +11,9 @@
             </div>
             <div class="image">
                 <h2>写真</h2>
-               <input type="file" name="image">
+                <input type="file" name="image">
             </div>
-            <input type="submit" value="選ぶ">
+                <input type="submit" value="選ぶ">
         </form>
         <div class="back">[<a href="/">戻る</a>]</div>
 @endsection

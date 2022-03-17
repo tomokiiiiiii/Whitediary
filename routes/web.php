@@ -29,8 +29,6 @@ Route::group(['middleware' => ['auth']], function(){
    Route::post('/select_user','UserController@store');
    Route::get('/select/{diary}','DiaryController@show');
    Route::delete('/select_user', 'UserController@cancel');
-   
-   
-});
+   });
 
 

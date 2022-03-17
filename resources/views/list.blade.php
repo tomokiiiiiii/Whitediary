@@ -16,5 +16,4 @@
             <p class='mypage'><a href="/mypage/{{Auth::id()}}">自分のページ</a></p>
         </div>
         <p class='back'>[<a href='/'>日記画面</a>]</p>
-
 @endsection

@@ -8,19 +8,21 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\FollowUser;
 use App\DiaryUser;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
     
-  public function index(User $user)
+  public function index(User $user,Request $request)
     {
-        $auth=Auth::user()->id;
+    $auth=Auth::user()->id;
     return view('mypage')->with([
-        'user'=>$user,
-        'auth'=>$auth,
-        'diaries' => $user->getOwnPaginateByLimit()
-        ]);
+    'user'=>$user,
+    'auth'=>$auth,
+    'diaries' => $user->getOwnPaginateByLimit()
+    ]);
     }
+    
   public function delete(Diary $diary_id)
     {
     $diary_id->delete();
@@ -69,10 +71,11 @@ class UserController extends Controller
    
   }
   
-  public function store(Request $request)
+  public function store(UserRequest $request)
   {
     $select_users= $request->users_array;
     $user=Auth::user();
+     array_push($select_users,$user->id);
     $all_diaries=$user->diaries();
     $latestdiary=$all_diaries->orderBy('updated_at','DESC')->limit(1)->first()->id;
     foreach($select_users as $select_user){
@@ -80,6 +83,7 @@ class UserController extends Controller
     }
     return redirect('/select/'.$latestdiary)->with(['latestdiary' => $latestdiary]);
     }
+    
   public function cancel()
     {
     $user=Auth::user();
