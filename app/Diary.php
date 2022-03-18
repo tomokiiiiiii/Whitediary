@@ -15,6 +15,7 @@ class Diary extends Model
     
     ];
     
+    protected $table = 'diaries';
     
     
     public function getPaginateByLimit(int $limit_count = 5)
@@ -33,3 +34,4 @@ class Diary extends Model
     }
 
 }
+

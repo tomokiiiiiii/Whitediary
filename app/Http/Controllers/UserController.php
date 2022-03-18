@@ -13,13 +13,23 @@ use App\Http\Requests\UserRequest;
 class UserController extends Controller
 {
     
-  public function index(User $user,Request $request)
+  public function mypage(User $user,Request $request)
     {
-    $auth=Auth::user()->id;
+    $auth_id=Auth::user()->id;
+    if($user->id==$auth_id){
+      //mypageのユーザーとログイン主が同じだった時の挙動
+      $diaries=new Diary;
+      $diaries=Diary::where('user_id',Auth::user()->id)->orderBy('updated_at','DESC')->paginate(5);
+      
+    }
+     //mypageのユーザーとログイン主が違う時の挙動
+    else{
+      $diaries=Auth::user()->getPaginateByLimit();
+    }
     return view('mypage')->with([
     'user'=>$user,
-    'auth'=>$auth,
-    'diaries' => $user->getOwnPaginateByLimit()
+    'auth_id'=>$auth_id,
+    'diaries' => $diaries,
     ]);
     }
     
@@ -55,10 +65,9 @@ class UserController extends Controller
   
   public function follows_delete(User $user)
   {
-    //外に出す意味は？getbylimit
     $user_id=Auth::id();
-    $user->followUsers()->detach(['following_user_id'=>$user_id])->getPaginateByLimit();
-      // $followUser->delete();
+    $user->followUsers()->detach(['following_user_id'=>$user_id]);
+    $followUser->delete();
     
     return redirect('/list');
   }
@@ -75,7 +84,6 @@ class UserController extends Controller
   {
     $select_users= $request->users_array;
     $user=Auth::user();
-     array_push($select_users,$user->id);
     $all_diaries=$user->diaries();
     $latestdiary=$all_diaries->orderBy('updated_at','DESC')->limit(1)->first()->id;
     foreach($select_users as $select_user){

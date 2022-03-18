@@ -6,14 +6,29 @@ use Illuminate\Support\Facades\Auth;
 use App\Diary;
 use App\Http\Requests\DiaryRequest;
 use Storage;
-use Illuminate\Pagination\LengthAwarePaginator;
-
 
 class DiaryController extends Controller
 {
     public function index(Diary $diary)
     {
-        $alldiaries=Auth::user()->selectdiaries()->orderBy('updated_at', 'DESC')->paginate(5);
+        $mydiaries=$diary->where('user_id',Auth::id())->get();
+        $yourdiaries=Auth::user()->selectdiaries()->get();
+        
+        
+        $alldiaries=[];
+        foreach($yourdiaries as $yourdiary){
+            array_push($alldiaries,$yourdiary);
+        }
+        foreach($mydiaries as $mydiary){
+            array_push($alldiaries,$mydiary);
+        }
+        
+        
+        $alldiaries = collect($alldiaries);
+        $alldiaries = $diary->whereHas('select_users',function($query){
+        $query->where('user_id',Auth::user()->id);
+        })->orderBy('updated_at','DESC')->paginate(5);
+
         return view('index')->with(['diaries' => $alldiaries]);
     }
     

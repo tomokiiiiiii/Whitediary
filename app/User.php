@@ -40,17 +40,12 @@ class User extends Authenticatable
     
     public function diaries()   
     {
-        return $this->hasMany('App\Diary');  
-    }
-    
-    
-    public function getOwnPaginateByLimit(int $limit_count = 5)
-    {
-        return $this->diaries()->orderBy('updated_at', 'DESC')->paginate($limit_count);
-    }
-    public function diary()
-    {
         return $this->hasMany('App\Diary');
+    }
+    
+    public function getPaginateByLimit(int $limit_count = 5)
+    {   
+        return $this->selectdiaries()->orderBy('updated_at','DESC')->paginate($limit_count);
     }
     
     // フォロワーからフォロー
@@ -63,11 +58,6 @@ class User extends Authenticatable
     public function follows()
     {
         return $this->belongsToMany('App\User', 'follow_users', 'following_user_id', 'followed_user_id');
-    }
-    
-    public function getPaginateByLimit(int $limit_count = 5)
-    {   
-        return $this->orderBy('updated_at','DESC')->paginate($limit_count);
     }
     
     public function selectdiaries()

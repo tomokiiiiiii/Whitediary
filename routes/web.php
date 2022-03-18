@@ -19,7 +19,7 @@ Route::group(['middleware' => ['auth']], function(){
    Route::get('/diaries/{diary}', 'DiaryController@select_user');
    Route::post('/diaries', 'DiaryController@store');
    Route::get('/home', 'HomeController@index')->name('home');
-   Route::get('/mypage/{user}', 'UserController@index');
+   Route::get('/mypage/{user}', 'UserController@mypage');
    Route::delete('/mypage/{diary_id}', 'UserController@delete');
    Route::get('/search','UserController@search');
    Route::post('/search','UserController@follow');

@@ -11,7 +11,7 @@
                     <p class='body'>{{ $diary->diary }}</p>
                     <p class='updated_at'>{{ $diary->updated_at}}</p>
                 </div>
-        　　@if($diary->user_id==$auth)
+        　　@if($user->id==$auth_id)
              <form action="/mypage/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post" style="display:inline">
                 @csrf
                 @method('DELETE')
@@ -22,7 +22,7 @@
                 <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
             @endif
             @endforeach
-            @if($user->user_id==$auth){{-- 日記が０だとエラー$userから持ってきたい --}}
+            @if($user->id==$auth_id)
             <div class='list'>[<a href='/list'>リスト</a>]</div>
             @endif
         </div>
