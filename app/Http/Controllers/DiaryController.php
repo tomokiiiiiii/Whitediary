@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Diary;
+use App\User;
 use App\Http\Requests\DiaryRequest;
 use Storage;
 
@@ -22,19 +24,37 @@ class DiaryController extends Controller
         foreach($mydiaries as $mydiary){
             array_push($alldiaries,$mydiary);
         }
+        $collectalldiaries = collect($alldiaries);
+        $sortalldiaries = $collectalldiaries->sortByDesc('updated_at')->paginate(5);
+        //$calldiaries=Auth::user()->selectdiaries()->orderBy('updated_at', 'DESC')->paginate(5);
+        //$alldiaries = collect($alldiaries)->sortByDesc('update_at')->paginate(5);
         
-        
-        $alldiaries = collect($alldiaries);
-        $alldiaries = $diary->whereHas('select_users',function($query){
-        $query->where('user_id',Auth::user()->id);
-        })->orderBy('updated_at','DESC')->paginate(5);
 
-        return view('index')->with(['diaries' => $alldiaries]);
+        return view('index')->with(['diaries' => $sortalldiaries]);
     }
     
     public function show(Diary $diary)
     {
-        return view('show')->with(['diary'=>$diary]);
+        $auth_id=Auth::user()->id;
+        if($diary->user_id==$auth_id){
+        //showのユーザーとログイン主が同じだった時の挙動
+        $users_id=DB::table('diary_user')->where('diary_id',$diary->id)->get('user_id');
+        $name=[];
+        foreach($users_id as $user_id){
+            $user= new User;
+            $user_name=$user->where('id',$user_id->user_id)->first()->name;
+            array_push($name,$user_name);
+        }
+        return view('show')->with([
+            'diary'=>$diary,
+            'names'=>$name,
+            ]);
+        }
+        //showのユーザーとログイン主が違う時の挙動
+        return view('show')->with([
+            'diary'=>$diary,
+            'names'=>[],
+            ]);
     }
     
     public function create()

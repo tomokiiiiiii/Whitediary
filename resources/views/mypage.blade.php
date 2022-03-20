@@ -8,8 +8,11 @@
             <h1>{{ $user->name }}</h1> 
             @foreach($diaries as $diary)
                 <div class='diary'>
+                    {{-- showに飛ぶリンク --}}
+                    <a href="/select/{{$diary->id}}">
                     <p class='body'>{{ $diary->diary }}</p>
                     <p class='updated_at'>{{ $diary->updated_at}}</p>
+                    </a>
                 </div>
         　　@if($user->id==$auth_id)
              <form action="/mypage/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post" style="display:inline">

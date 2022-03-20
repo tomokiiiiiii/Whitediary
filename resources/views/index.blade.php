@@ -7,10 +7,12 @@
 　　　　<p class='create'>[<a href='/diaries/create'>書く</a>]</p>
         <div class='diaries'>
             @foreach($diaries as $diary)
-                <a href="/mypage/{{$diary->user->id}}">{{ $diary->user->name  }}</a>
+                    <a href="/mypage/{{$diary->user->id}}">{{ $diary->user->name  }}</a>
                 <div class='diary'>
+                    {{--<a href="/select/{{$diary->id}}"> --}}
                     <p class='body'>{{ $diary->diary }}</p>
                     <p class='updated_at'>{{ $diary->updated_at}}</p>
+                    {{-- </a> --}}
                 </div>
                 @if($diary->image_path)
                 <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
