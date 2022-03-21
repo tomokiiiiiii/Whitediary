@@ -11,7 +11,7 @@
             </div>
             <div class="image">
                 <h2>写真</h2>
-                <input type="file" name="image">
+                <input type="file" name="image" accept="image/*">
             </div>
                 <input type="submit" value="選ぶ">
         </form>

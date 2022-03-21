@@ -8,6 +8,7 @@ use App\Diary;
 use App\User;
 use App\Http\Requests\DiaryRequest;
 use Storage;
+use App\Like;
 
 class DiaryController extends Controller
 {
@@ -75,5 +76,28 @@ class DiaryController extends Controller
         $diary->save();
         return redirect("/select");
     }
+   //lile
+   public function like($id)
+   {
+     //書き方少し違う
+    Like::create([
+      'diary_id' => $id,
+      'user_id' => Auth::id(),
+    ]);
+
+    session()->flash('success', 'You Liked the Diary.');
+
+    return redirect()->back();
+  }
+  
+  //like解除
+  public function unlike($id)
+  {
+    $like = Like::where('diary_id', $id)->where('user_id', Auth::id())->first();
+    $like->delete();
+    session()->flash('success', 'You Unliked the Diary.');
+
+    return redirect()->back();
+  }
 
 }
