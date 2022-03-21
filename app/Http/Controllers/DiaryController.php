@@ -26,9 +26,13 @@ class DiaryController extends Controller
             array_push($alldiaries,$mydiary);
         }
         $collectalldiaries = collect($alldiaries);
+        //$new_value = substr($collectalldiaries[8]->image_path, 0, 108);
+        //dd($new_value);
+        //dd($collectalldiaries[8]->image_path);
         $sortalldiaries = $collectalldiaries->sortByDesc('updated_at')->paginate(5);
         //$calldiaries=Auth::user()->selectdiaries()->orderBy('updated_at', 'DESC')->paginate(5);
         //$alldiaries = collect($alldiaries)->sortByDesc('update_at')->paginate(5);
+      
         
 
         return view('index')->with(['diaries' => $sortalldiaries]);

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="{{ mix('js/select.js') }}"></script>
 　　<h1>選ぶ</h1>
     　　<form action="/select_user" method="POST"　enctype="multipart/form-data">
             {{ csrf_field() }}
@@ -11,6 +12,9 @@
                     <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
                 </label>
         　　@endforeach
+        　　<p>
+    <button id="btn">全選択/全解除</button>
+  </p>
         　　<input type="submit" value="投稿">
     　　</form>
     　　<form action="/select_user"  method="post" style="display:inline">
