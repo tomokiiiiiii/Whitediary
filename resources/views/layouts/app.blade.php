@@ -77,5 +77,6 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('js/choice.js') }}"></script>
 </body>
 </html>

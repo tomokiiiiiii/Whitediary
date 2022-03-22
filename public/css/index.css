@@ -1,0 +1,23 @@
+.split-box{
+	position:absolute;
+	width:20%;
+	height:100%;
+}
+
+.left-box {
+	left:0;
+}
+
+.right-box {
+	right:0;
+	overflow-y:scroll;
+}
+
+@media screen and (max-width:600px) { 
+	.split-box {
+		position:relative;
+		width:100%;
+		height:auto;
+
+	}
+}
