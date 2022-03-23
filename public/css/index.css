@@ -1,6 +1,6 @@
 .split-box{
 	position:absolute;
-	width:20%;
+	width:80%;
 	height:100%;
 }
 
@@ -13,11 +13,18 @@
 	overflow-y:scroll;
 }
 
+.body {
+  white-space: pre-wrap;
+}
+
 @media screen and (max-width:600px) { 
 	.split-box {
 		position:relative;
 		width:100%;
 		height:auto;
-
+	}
+	
+	.body{
+		width: 70%;
 	}
 }

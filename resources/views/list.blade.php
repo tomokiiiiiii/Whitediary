@@ -1,11 +1,12 @@
-@extends('layouts.app')　　　　　　　　　　　　　　　　　
+@extends('layouts.app')
 
 @section('content')
         <h1>友達一覧</h1>
         <div class='list'>
             @foreach($following_user_ids->follows as $following_user_id)
                 <div class='following_user_id'>
-                    <p class='name'>{{ $following_user_id->name }}</p>
+                    <a href="/mypage/{{$following_user_id->id}}">{{ $following_user_id->name }}</a>
+                    {{--<p class='name'>{{ $following_user_id->name }}</p>--}}
                 </div>
                 <form action="/list/{{ $following_user_id->id }}" id="form_{{ $following_user_id->id }}" method="post" style="display:inline">
                 @csrf

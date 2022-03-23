@@ -45,6 +45,8 @@
 }
 
 html {
+  padding: 0;
+  margin: 0;
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -73,6 +75,8 @@ body {
   color: #212529;
   text-align: left;
   background-color: #f8fafc;
+  padding :0;
+  position: relative;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {

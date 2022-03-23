@@ -51,9 +51,11 @@ class UserController extends Controller
         $name=$input['name'];
         if( DB::table('users')->where('id',$user_id)->where('name',$name)->exists()){
           if(!DB::table('follow_users')->where('following_user_id',Auth::id())->where('followed_user_id',$user_id)->exists()){
-            $user=Auth::user();
-            $user->follows()->attach(['followed_user_id'=>$user_id],['following_user_id'=>$user->id]);
-            return redirect('/');
+            if($user_id!=Auth::id()){
+              $user=Auth::user();
+              $user->follows()->attach(['followed_user_id'=>$user_id],['following_user_id'=>$user->id]);
+              return redirect('/');
+            }
           }
         }
         return redirect('/search');

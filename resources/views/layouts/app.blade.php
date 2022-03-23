@@ -18,7 +18,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <style>
+  
+    </style>
+    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -72,11 +77,11 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>
     </div>
     <script src="{{ asset('js/choice.js') }}"></script>
+    <script src="{{ asset('js/index.js') }}"></script>
 </body>
 </html>
