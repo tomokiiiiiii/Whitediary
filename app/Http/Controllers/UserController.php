@@ -31,11 +31,11 @@ class UserController extends Controller
                 array_push($selectdiary_id,$selectdiary->diary_id);
             }
 
-//worlddiariesにdiariestableとdiary_usertableを入れる
+        //worlddiariesにdiariestableとdiary_usertableを入れる
         $worlddiaries=[];
             //diariestableとdiary_usertableの被りを抜く
             $alldiaries=$diary->whereNotIn('id',$selectdiary_id)->get();
-            $follow_user_ids=Auth::user()->followUsers()->get();
+            $follow_user_ids=Auth::user()->follows()->get();
             $follow_diaries=[];
             foreach($follow_user_ids as $follow_user_id){
                 array_push($follow_diaries,$follow_user_id->id);
