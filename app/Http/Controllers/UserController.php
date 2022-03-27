@@ -13,7 +13,7 @@ use App\Http\Requests\UserRequest;
 class UserController extends Controller
 {
     
-  public function mypage(User $user,Request $request)
+  public function mypage(User $user,Request $request,Diary $diary)
     {
     $auth_id=Auth::user()->id;
     if($user->id==$auth_id){
@@ -21,16 +21,52 @@ class UserController extends Controller
       $diaries=new Diary;
       $diaries=Diary::where('user_id',Auth::user()->id)->orderBy('updated_at','DESC')->paginate(5);
       
+      
     }
      //mypageのユーザーとログイン主が違う時の挙動
     else{
-      $diaries=Auth::user()->getPaginateByLimit();
+      $selectdiaries=DB::table('diary_user')->groupBy('diary_id')->get('diary_id');
+        $selectdiary_id=[];
+            foreach($selectdiaries as $selectdiary){
+                array_push($selectdiary_id,$selectdiary->diary_id);
+            }
+
+//worlddiariesにdiariestableとdiary_usertableを入れる
+        $worlddiaries=[];
+            //diariestableとdiary_usertableの被りを抜く
+            $alldiaries=$diary->whereNotIn('id',$selectdiary_id)->get();
+            $follow_user_ids=Auth::user()->followUsers()->get();
+            $follow_diaries=[];
+            foreach($follow_user_ids as $follow_user_id){
+                array_push($follow_diaries,$follow_user_id->id);
+            }
+        
+            foreach($alldiaries as $alldiary){
+                if(in_array($alldiary->user_id,$follow_diaries)){
+                    array_push($worlddiaries,$alldiary);
+                }else if($alldiary->user_id==Auth::id()){
+                    array_push($worlddiaries,$alldiary);
+                }
+            }
+
+$yourdiaries=Auth::user()->selectdiaries()->get();
+            foreach($yourdiaries as $yourdiary){
+                array_push($worlddiaries,$yourdiary);
+            }
+            
+          
+
+ $collectalldiaries = collect($worlddiaries);
+  $diaries = $collectalldiaries->sortByDesc('updated_at')->paginate(5);
+
+
     }
-    return view('mypage')->with([
+  return view('mypage')->with([
     'user'=>$user,
     'auth_id'=>$auth_id,
     'diaries' => $diaries,
     ]);
+    
     }
     
   public function delete(Diary $diary_id)

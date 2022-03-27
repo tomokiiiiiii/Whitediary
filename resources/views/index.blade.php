@@ -10,11 +10,9 @@
 　　    <div class="right-inner">
             <div class='diaries'>
                 @foreach($diaries as $diary)
-                    <a href="/mypage/{{$diary->userid}}">{{ $diary->user->name  }}</a>
+                    <a href="/mypage/{{$diary->user_id}}">{{ $diary->user->name  }}</a>
                     <div class='diary'>
-                        {{--<a href="/select/{{$diary->id}}"> --}}
                         <p class='body'>{{ $diary->diary }}</p>
-                        {{-- </a> --}}
                     </div>
                     @if($diary->image_path)
                         <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
@@ -34,7 +32,9 @@
                 @endforeach
             </div>        
         </div>        
-        
+         <div class='paginate'>
+            {{ $diaries->links() }}
+        </div>
     </div>
 
 @endsection

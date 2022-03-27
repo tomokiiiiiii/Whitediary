@@ -13,7 +13,7 @@
                     {{--<a href="/mypage/{{$following_user_id->id}}">{{ $following_user_id->name }}</a>--}}
                     <p class='name'>{{ $followed_user_id->name }}</p>
                 </div>
-                <form action="/list/{{ $followed_user_id->id }}" id="form_{{ $followed_user_id->id }}" method="post" style="display:inline">
+                <form action="/listfollowed/{{ $followed_user_id->id }}" id="form_{{ $followed_user_id->id }}" method="post" style="display:inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit" onClick="delete_alert(event);return false;">友達削除</button>

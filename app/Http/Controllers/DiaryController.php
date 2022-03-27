@@ -26,7 +26,7 @@ class DiaryController extends Controller
             $alldiaries=$diary->whereNotIn('id',$selectdiary_id)->get();
     
             //followingのidを持ってくる
-            $follow_user_ids=Auth::user()->followUsers()->get();
+            $follow_user_ids=Auth::user()->follows()->get();
         
             //followingの日記
             $follow_diaries=[];

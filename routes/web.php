@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth']], function(){
    Route::get('/listfollowing','UserController@listfollowing');
    Route::get('/listfollowed','UserController@listfollowed');
    Route::delete('/listfollowing/{user}','UserController@following_delete');
+   Route::delete('/listfollowed/{user}','UserController@followed_delete');
    Route::get('/select','UserController@select_user');
    Route::post('/select_user','UserController@store');
    Route::get('/select/{diary}','DiaryController@show');

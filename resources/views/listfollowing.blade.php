@@ -9,9 +9,7 @@
         <div class='listfollowing'>
             @foreach($following_user_ids as $following_user_id)
                 <div class='following_user_id'>
-                    {{--ここおかしい全部同じ日記に飛ぶ--}}
-                    {{--<a href="/mypage/{{$following_user_id->id}}">{{ $following_user_id->name }}</a>--}}
-                    <p class='name'>{{ $following_user_id->name }}</p>
+                    <a href="/mypage/{{ $following_user_id->id }}">{{ $following_user_id->name }}</a>
                 </div>
                 <form action="/listfollowing/{{ $following_user_id->id }}" id="form_{{ $following_user_id->id }}" method="post" style="display:inline">
                 @csrf
