@@ -256,12 +256,20 @@ button:focus:not(:focus-visible) {
 input,
 button,
 select,
-optgroup,
+optgroup{
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
 textarea {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  width: 20%;
+  height: 200px;
 }
 
 button,

@@ -23,7 +23,11 @@
     </style>
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/scroll.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/show.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/choice.js') }}"></script>
+    <script src="{{ asset('js/delete.js') }}"></script>
+    <script src="{{ asset('js/create.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -81,7 +85,5 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('js/choice.js') }}"></script>
-    <script src="{{ asset('js/index.js') }}"></script>
 </body>
 </html>

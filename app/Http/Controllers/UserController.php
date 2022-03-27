@@ -61,21 +61,36 @@ class UserController extends Controller
         return redirect('/search');
         
   }
-  public function list(FollowUser $followUser)
+  public function listfollowing(FollowUser $followUser)
   {
-    $user=Auth::user();
-    return view('list')->with(['following_user_ids' => $user]);
+    $user=Auth::user()->follows()->get();
+    return view('listfollowing')->with(['following_user_ids' => $user]);
   }
   
-  public function follows_delete(User $user)
+  public function listfollowed(FollowUser $followUser)
+  {
+    $user=Auth::user()->followUsers()->get();;
+    return view('listfollowed')->with(['followed_user_ids' => $user]);
+  }
+  
+  public function following_delete(User $user)
   {
     $user_id=Auth::id();
     $user->followUsers()->detach(['following_user_id'=>$user_id]);
    
     
-    return redirect('/list');
+    return redirect('/listfollowing');
   }
+  
+  public function followed_delete(User $user)
+  {
+    $user_id=Auth::id();
+    $user->follows()->detach(['followed_user_id'=>$user_id]);
+   
     
+    return redirect('/listfollowed');
+  }
+  
   public function select_user(User $user)
   {
     $user=Auth::user();

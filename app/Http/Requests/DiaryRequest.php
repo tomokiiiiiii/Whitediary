@@ -9,7 +9,8 @@ class DiaryRequest extends FormRequest
     public function rules()
     {
         return [
-            'diary.diary' => 'required|string|max:4000',
+            //人が３０秒で読むことができるとされている文字数
+            'diary.diary' => 'required|string|max:200',
         ];
     }
 }

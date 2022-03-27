@@ -60,5 +60,9 @@ class Diary extends Model
        return false;
     }
    }
+   
+   
+   
+   //public function method
 }
 

@@ -23,8 +23,9 @@ Route::group(['middleware' => ['auth']], function(){
    Route::delete('/mypage/{diary_id}', 'UserController@delete');
    Route::get('/search','UserController@search');
    Route::post('/search','UserController@follow');
-   Route::get('/list','UserController@list');
-   Route::delete('/list/{user}','UserController@follows_delete');
+   Route::get('/listfollowing','UserController@listfollowing');
+   Route::get('/listfollowed','UserController@listfollowed');
+   Route::delete('/listfollowing/{user}','UserController@following_delete');
    Route::get('/select','UserController@select_user');
    Route::post('/select_user','UserController@store');
    Route::get('/select/{diary}','DiaryController@show');

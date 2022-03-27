@@ -1,11 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-        <h1>日記</h1>
+    <div class="split-box left-box">
+        @if($user->id==$auth_id)
+        <h2>{{$user->id}}</h2>
+        @endif
+        <h1>{{ $user->name }}</h1>
         <p class='follow'>[<a href='/search'>友達を追加</a>]</p>
+        @if($user->id==$auth_id)
+            <div class='list'>[<a href='/listfollowing'>見たい人リスト←</a>]</div>
+            <div class='list'>[<a href='/listfollowed'>見せたいリスト→</a>]</div>
+        @endif
+        <p class='back'>[<a href='/'>日記画面</a>]</p>
+    </div>
+    <div class="split-box right-box">
         <div class='own_diaries'>
-            <h2>{{$user->id}}</h2>
-            <h1>{{ $user->name }}</h1> 
             @foreach($diaries as $diary)
                 <div class='diary'>
                     {{-- showに飛ぶリンク --}}
@@ -30,16 +39,14 @@
                     <form action="/mypage/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post" style="display:inline">
                     @csrf
                     @method('DELETE')
-                        <button type="submit">記事削除</button> 
+                        <button type="submit" onClick="delete_alert(event);return false;">記事削除</button>
                     </form>
                 @endif
             @endforeach
-            @if($user->id==$auth_id)
-            <div class='list'>[<a href='/list'>リスト</a>]</div>
-            @endif
+            
         </div>
-        <p class='back'>[<a href='/'>日記画面</a>]</p>
         <div class='paginate'>
             {{ $diaries->links() }}
         </div>
+    </div>    
 @endsection

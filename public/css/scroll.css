@@ -1,0 +1,19 @@
+.split-box{
+	position:absolute;
+	width:80%;
+	height:100%;
+}
+
+.left-box {
+	left:0;
+	height:100vh;
+}
+
+.right-box {
+	right:0;
+	height:100vh;
+}
+
+.body {
+  white-space: pre-wrap;
+}

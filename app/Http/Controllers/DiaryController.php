@@ -14,26 +14,53 @@ class DiaryController extends Controller
 {
     public function index(Diary $diary)
     {
-        $mydiaries=$diary->where('user_id',Auth::id())->get();
+        $selectdiaries=DB::table('diary_user')->groupBy('diary_id')->get('diary_id');
+        $selectdiary_id=[];
+        foreach($selectdiaries as $selectdiary){
+            array_push($selectdiary_id,$selectdiary->diary_id);
+        }
+        $alldiaries=$diary->whereNotIn('id',$selectdiary_id)->get();
+    
+        $worlddiaries=[];
+        $follow_user_ids=Auth::user()->followUsers()->get();
+        
+        $follow_diaries=[];
+        foreach($follow_user_ids as $follow_user_id){
+            array_push($follow_diaries,$follow_user_id->id);
+        }
+        
+        foreach($alldiaries as $alldiary){
+            if(in_array($alldiary->user_id,$follow_diaries)){
+                array_push($worlddiaries,$alldiary);
+            }else if($alldiary->user_id==Auth::id()){
+                array_push($worlddiaries,$alldiary);
+            }
+        }
+        
+        
+        $mydiaries=$diary->whereIn('id',$selectdiary_id)->get();
+
+        $myselectdiaries=$diary->whereNotIn('id',$selectdiary_id)->get('id');
+        $myselectdiary_id=[];
+        foreach($myselectdiaries as $myselectdiary){
+            array_push($myselectdiary_id,$myselectdiary->id);
+        }
+        $mydiaries=$diary->whereNotIn('id',array_merge($selectdiary_id,$myselectdiary_id))->where('user_id',Auth::id())->get();
+        
+        
+        //見せられる日記
         $yourdiaries=Auth::user()->selectdiaries()->get();
-        
-        
-        $alldiaries=[];
         foreach($yourdiaries as $yourdiary){
-            array_push($alldiaries,$yourdiary);
-        }
+            array_push($worlddiaries,$yourdiary);
+         }
         foreach($mydiaries as $mydiary){
-            array_push($alldiaries,$mydiary);
-        }
-        $collectalldiaries = collect($alldiaries);
-        //$new_value = substr($collectalldiaries[8]->image_path, 0, 108);
-        //dd($new_value);
-        //dd($collectalldiaries[8]->image_path);
+           array_push($worlddiaries,$mydiary);
+         }
+        $collectalldiaries = collect($worlddiaries);
+       
+    
         $sortalldiaries = $collectalldiaries->sortByDesc('updated_at')->paginate(5);
-        //$calldiaries=Auth::user()->selectdiaries()->orderBy('updated_at', 'DESC')->paginate(5);
-        //$alldiaries = collect($alldiaries)->sortByDesc('update_at')->paginate(5);
       
-        
 
         return view('index')->with(['diaries' => $sortalldiaries]);
     }
