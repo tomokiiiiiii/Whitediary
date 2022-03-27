@@ -2,6 +2,7 @@
 
 @section('content')
         <h1>見たい人の友達一覧</h1>
+        <!--if機能してない-->
         @if(!isset($following_user_ids))
         <h4>友達を追加してください</h4>
         <p class='mypage'><a href="/mypage/{{Auth::id()}}">自分のページ</a></p>

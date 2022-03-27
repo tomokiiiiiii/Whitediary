@@ -25,6 +25,7 @@ class UserController extends Controller
     }
      //mypageのユーザーとログイン主が違う時の挙動
     else{
+      //diariestableとdiary_usertableの被り
       $selectdiaries=DB::table('diary_user')->groupBy('diary_id')->get('diary_id');
         $selectdiary_id=[];
             foreach($selectdiaries as $selectdiary){
@@ -33,8 +34,8 @@ class UserController extends Controller
 
         //worlddiariesにdiariestableとdiary_usertableを入れる
         $worlddiaries=[];
-            //diariestableとdiary_usertableの被りを抜く
-            $alldiaries=$diary->whereNotIn('id',$selectdiary_id)->get();
+            //diariestableとdiary_usertableの被りを抜くselectしたidのみ表示
+            $alldiaries=$diary->whereNotIn('id',$selectdiary_id)->where('user_id',$user->id)->get();
             $follow_user_ids=Auth::user()->follows()->get();
             $follow_diaries=[];
             foreach($follow_user_ids as $follow_user_id){
