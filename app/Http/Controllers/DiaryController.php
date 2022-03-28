@@ -68,7 +68,7 @@ class DiaryController extends Controller
     }
     
     
-    public function show(Diary $diary,Like $like)
+    public function show(Diary $diary)
     {
         $auth_id=Auth::user()->id;
         if($diary->user_id==$auth_id){
@@ -85,11 +85,9 @@ class DiaryController extends Controller
             'names'=>$name,
             ]);
         }
-        $likelist=$like->where('diary_id',$diary->id)->get();
         
         //showのユーザーとログイン主が違う時の挙動
         return view('show')->with([
-            'likelists'=>$likelist,
             'diary'=>$diary,
             'names'=>[],
             ]);

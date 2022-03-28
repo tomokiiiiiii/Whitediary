@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="split-box left-box">
-        <p class='follow'>[<a href='/search'>友達を追加</a>]</p>
-        <p class='mypage'>[<a href="/mypage/{{Auth::id()}}">自分のページ</a>]</p>
-　　　　<p class='create'>[<a href='/diaries/create'>書く</a>]</p>
+        <p class='follow'><a href='/search'>友達を追加</a></p>
+        <p class='mypage'><a href="/mypage/{{Auth::id()}}">自分のページ</a></p>
+　　　　<p class='create'><a href='/diaries/create'>書く</a></p>
 　　</div>
 　　<div class="split-box right-box">
 　　    <div class="right-inner">

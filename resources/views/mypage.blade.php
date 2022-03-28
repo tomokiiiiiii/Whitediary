@@ -6,12 +6,12 @@
         <h2>{{$user->id}}</h2>
         @endif
         <h1>{{ $user->name }}</h1>
-        <p class='follow'>[<a href='/search'>友達を追加</a>]</p>
+        <p class='follow'><a href='/search'>友達を追加</a></p>
         @if($user->id==$auth_id)
-            <div class='list'>[<a href='/listfollowing'>見たい人リスト←</a>]</div>
-            <div class='list'>[<a href='/listfollowed'>見せたいリスト→</a>]</div>
+            <div class='list'><a href='/listfollowing'>見たい人リスト←</a></div>
+            <div class='list'><a href='/listfollowed'>見せたいリスト→</a></div>
         @endif
-        <p class='back'>[<a href='/'>日記画面</a>]</p>
+        <p class='back'><a href='/'>日記画面</a></p>
     </div>
     <div class="split-box right-box">
         <div class='own_diaries'>

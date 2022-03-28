@@ -8,5 +8,5 @@
         @endforeach
     </div>
     <a href="/select/{{$diary->id}}">ひとつ戻る</a>
-    <div class='back'>[<a href='/'>日記画面</a>]</div>
+    <div class='back'><a href='/'>日記画面</a></div>
 @endsection
