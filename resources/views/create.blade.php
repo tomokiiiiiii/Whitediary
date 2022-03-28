@@ -1,7 +1,7 @@
 @extends('layouts.app')　　　　　　　　　　　　　　　　　　
 
 @section('content')
-        <h1>日記</h1>
+        <h1>日記作成</h1>
         <form action="/diaries" method="POST"　enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="diary">
@@ -12,7 +12,7 @@
             </div>
             <div class="image">
                 <h2>写真</h2>
-                <input type="file" name="image" accept="image/png,image/jpeg,image/gif">
+                <input type="file" name="image" accept="image/jpeg,image/png,image/gif">
             </div>
                 <input type="submit" value="選ぶ">
         </form>

@@ -23,10 +23,18 @@
             @else
                 <a href="{{ route('diary.like', ['id' => $diary->id]) }}" class="btn btn-secondary btn-sm">いいね</a>
             @endif
-            {{ $diary->likes->count() }}
+            <a href="/likelist/{{$diary->id}}">{{ $diary->likes->count() }}</a>
+            <p>test</p>
+            @foreach($likelists as $likelist)
+            <p>{{$likelist->user->name}}</p>
+           
+            
+            @endforeach
+            
+            
         </div>
-        @if($diary->image_path)
-            <img src="{{ $diary->image_path }}">
+        @if ($diary->image_path)
+            <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
         @endif
     </div>
 

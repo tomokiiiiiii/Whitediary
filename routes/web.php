@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function(){
    Route::delete('/select_user', 'UserController@cancel');
    Route::get('/diary/like/{id}', 'DiaryController@like')->name('diary.like');
    Route::get('/diary/unlike/{id}', 'DiaryController@unlike')->name('diary.unlike');
+   Route::get('/likelist/{diary}','DiaryController@likelist');
    });
 
 

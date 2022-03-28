@@ -68,7 +68,7 @@ class DiaryController extends Controller
     }
     
     
-    public function show(Diary $diary)
+    public function show(Diary $diary,Like $like)
     {
         $auth_id=Auth::user()->id;
         if($diary->user_id==$auth_id){
@@ -85,8 +85,11 @@ class DiaryController extends Controller
             'names'=>$name,
             ]);
         }
+        $likelist=$like->where('diary_id',$diary->id)->get();
+        
         //showのユーザーとログイン主が違う時の挙動
         return view('show')->with([
+            'likelists'=>$likelist,
             'diary'=>$diary,
             'names'=>[],
             ]);
@@ -122,16 +125,27 @@ class DiaryController extends Controller
     session()->flash('success', 'You Liked the Diary.');
 
     return redirect()->back();
-  }
+    }
   
-  //like解除
-  public function unlike($id)
-  {
-    $like = Like::where('diary_id', $id)->where('user_id', Auth::id())->first();
-    $like->delete();
-    session()->flash('success', 'You Unliked the Diary.');
+    //like解除
+    public function unlike($id)
+    {
+        $like = Like::where('diary_id', $id)->where('user_id', Auth::id())->first();
+        $like->delete();
+        session()->flash('success', 'You Unliked the Diary.');
 
-    return redirect()->back();
-  }
+        return redirect()->back();
+    }
 
+   
+   public function likelist(Diary $diary,Like $like)
+   {
+        $likelist=$like->where('diary_id',$diary->id)->get();
+        
+        return view('likelist')->with([
+            'likelists'=>$likelist,
+            'diary'=>$diary,
+            'names'=>[],
+            ]);
+   }
 }
