@@ -9,7 +9,10 @@
 　　<div class="split-box right-box">
             <div class='diaries'>
                 @foreach($diaries as $diary)
+                {{-- mypageに飛ぶリンク --}}
+                <div class='username'>
                     <a href="/mypage/{{$diary->user_id}}">{{ $diary->user->name  }}</a>
+                </div>
                 <div class='mydiary'>
                      {{-- showに飛ぶリンク --}}
                     <a href="/select/{{$diary->id}}">
@@ -20,7 +23,7 @@
                         {{--投稿日時--}}
                         <p class='updated_at'>{{ $diary->updated_at}}</p>
                         {{--like機能--}}
-                        <div>
+                        <div class="like">
                             @if($diary->is_liked_by_auth_user())
                                 <a href="{{ route('diary.unlike', ['id' => $diary->id]) }}" class="btn btn-success btn-sm">いいね</a>
                             @else

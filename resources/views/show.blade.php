@@ -23,7 +23,6 @@
                 <a href="{{ route('diary.like', ['id' => $diary->id]) }}" class="btn btn-secondary btn-sm">いいね</a>
             @endif
             <a href="/likelist/{{$diary->id}}">{{ $diary->likes->count() }}</a>
-            
         </div>
         @if ($diary->image_path)
             <img width=60% src="{{ $diary->image_path }}" class="img-responsive">

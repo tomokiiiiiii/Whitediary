@@ -37,3 +37,13 @@ div .mydiary:hover{
     width: 0;
     padding: 0;
 }
+
+div .like{
+    padding-left:100vh;
+}
+
+div .username a{
+    color: #0f1419;
+    display: inline-block;
+    font-size: 40px;
+}
