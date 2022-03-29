@@ -42,9 +42,8 @@ class DiaryController extends Controller
                 }
             }
         
-            //自分の日記
+            //自分の日記 おかしい
             $mydiaries=$diary->whereIn('id',$selectdiary_id)->get();
-
             $myselectdiaries=$diary->whereNotIn('id',$selectdiary_id)->get('id');
             $myselectdiary_id=[];
                 foreach($myselectdiaries as $myselectdiary){

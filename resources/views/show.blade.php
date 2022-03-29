@@ -3,16 +3,15 @@
 @section('content')
     <div class="split-box left-box">
         <h1>日記詳細</h1>
-        <div class='diary'>
+        <div class='showdiary'>
             <h2 class='user_id'>{{ $diary->user->name  }}</h2>
             <p class='updated_at'>{{ $diary->updated_at}}</p>
             @foreach($names as $name)
                 <p class='name'>{{ $name }}</p>
             @endforeach
-            
+            <p class='back'><a href="/mypage/{{$diary->user->id}}">ひとつ戻る</a></p>
+            <p class='home'><a href='/'>日記画面</a></p>
         </div>
-            <a href="/mypage/{{$diary->user->id}}">ひとつ戻る</a>
-            <div class='back'><a href='/'>日記画面</a></div>
     </div>
     <div class="split-box right-box">
         <p class='body'>{{ $diary->diary }}</p>

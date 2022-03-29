@@ -24,7 +24,7 @@
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/scroll.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/show.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/diary.css') }}" rel="stylesheet">
     <script src="{{ asset('js/choice.js') }}"></script>
     <script src="{{ asset('js/delete.js') }}"></script>
     <script src="{{ asset('js/create.js') }}"></script>
@@ -81,7 +81,7 @@
                 </div>
             </div>
         </nav>
-        <main class="py-4">
+        <main class="py-2">
             @yield('content')
         </main>
     </div>

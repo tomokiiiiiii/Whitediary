@@ -1,19 +1,46 @@
+html,body{
+	height:100%;
+	margin:0;
+	padding:0;
+}
+
+* {
+	box-sizing:border-box;
+}
+
 .split-box{
 	position:absolute;
 	width:80%;
 	height:100%;
+	padding:1em;
 }
 
 .left-box {
+	font-size: 20px;
 	left:0;
-	height:100vh;
+	background:#FFFFFF;
+	color:#0F1319;
 }
 
 .right-box {
 	right:0;
-	height:100vh;
+	overflow-y:scroll;
+	background:#ffffff;
 }
 
-.body {
-  white-space: pre-wrap;
+.left-box a{
+	color:#0F1319;
+	display:inline-block;
+}
+
+.left-box p a{
+	display: inline-block;
+	color: #0f1419;
+	border-radius: 20px; 
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+.left-box p a:hover{
+	background-color: #EAEAEB;
 }

@@ -1,0 +1,39 @@
+.diaries{
+    width: 90%;
+}
+.own_diaries {
+    width: 90%;
+}
+
+div .mydiary {
+    
+   border-radius: 20px;
+   transition: .8s;
+	color: #0f1419;
+	padding: 0;
+	text-decoration: none;
+    width: inherit;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid gray;
+    
+}
+
+div .mydiary a{
+	color:#0F1319;
+	text-decoration: none;
+}
+
+
+div .mydiary:hover{
+    background-color: #EAEAEB;
+    transform: translateY(0);
+    box-shadow: 5px 5px 5px whitesmoke;
+}
+
+.mydiary p .mypagebody {
+    width: 0;
+    padding: 0;
+}

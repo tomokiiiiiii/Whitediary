@@ -4,21 +4,20 @@
     <div class="split-box left-box">
         <p class='follow'><a href='/search'>友達を追加</a></p>
         <p class='mypage'><a href="/mypage/{{Auth::id()}}">自分のページ</a></p>
-　　　　<p class='create'><a href='/diaries/create'>書く</a></p>
+        <p class='create'><a href='/diaries/create'>書く</a></p>
 　　</div>
 　　<div class="split-box right-box">
-　　    <div class="right-inner">
             <div class='diaries'>
                 @foreach($diaries as $diary)
                     <a href="/mypage/{{$diary->user_id}}">{{ $diary->user->name  }}</a>
-                    <div class='diary'>
+                <div class='mydiary'>
+                     {{-- showに飛ぶリンク --}}
+                    <a href="/select/{{$diary->id}}">
                         <p class='body'>{{ $diary->diary }}</p>
-                    </div>
                     @if($diary->image_path)
                         <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
                     @endif
                         {{--投稿日時--}}
-    
                         <p class='updated_at'>{{ $diary->updated_at}}</p>
                         {{--like機能--}}
                         <div>
@@ -29,8 +28,9 @@
                             @endif
                                 {{ $diary->likes->count() }}
                         </div>
+                    </a>
+                </div>
                 @endforeach
-            </div>        
         </div>        
          <div class='paginate'>
             {{ $diaries->links() }}
