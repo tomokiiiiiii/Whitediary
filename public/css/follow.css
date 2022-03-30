@@ -1,0 +1,18 @@
+
+
+div .followinglist a{
+    color: #0f1419;
+    display: inline-block;
+    font-size: 40px;
+}
+
+div .followedlist{
+    font-size: 40px;
+}
+
+.listsplit-box{
+	position:absolute;
+	width:60%;
+	height:100%;
+	padding:1em;
+}

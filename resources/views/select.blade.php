@@ -1,9 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>全世界へ向けて発信</h1>
-    <button><a href="/">投稿</a></button>
-    <h1>現状の人から選ぶ</h1>
+
+    <div class="split-select everyone">
+        <div class="normalarea">皆</div>
+    <a href="/" class="btn btn-primary btn-lg">投稿</a>
+    <p>
+    　<form action="/select_user"  method="post" style="display:inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit">やめる</button>
+        </form>
+        </P>
+    </div>
+    <div class="split-select choices">
+        <div class="selectionarea">選ぶ</div>
         <p>
             <button onclick="checked()">全選択</button>
             <button onclick="unChecked()">全解除</button>
@@ -17,11 +28,9 @@
                     <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
                 </label>
         　　@endforeach
-        　　<input type="submit" value="親しい人">
+        　　<p>
+        　　<input type="submit" class="btn btn-primary btn-lg" value="親しい人に投稿">
+        　　</p>
     　　</form>
-    　　<form action="/select_user"  method="post" style="display:inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit">やめる</button> 
-        </form>      
+    </div>
 @endsection

@@ -26,6 +26,9 @@
     <link href="{{ asset('css/scroll.css') }}" rel="stylesheet">
     <link href="{{ asset('css/diary.css') }}" rel="stylesheet">
     <link href="{{ asset('css/create.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/search.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/follow.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/select.css') }}" rel="stylesheet">
     <script src="{{ asset('js/choice.js') }}"></script>
     <script src="{{ asset('js/delete.js') }}"></script>
     <script src="{{ asset('js/create.js') }}"></script>

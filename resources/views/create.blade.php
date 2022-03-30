@@ -12,7 +12,7 @@
                 <p class="diary_error" style="color:red">{{ $errors->first('diary.diary') }}</p>
             </div>
             <div class="image">
-                <h2>写真</h2>
+                <h1>写真</h1>
                 <input type="file" accept="image/jpeg,image/png,image/gif">
             </div>
             <input type="submit" class="btn btn-primary btn-lg" value="選ぶ">

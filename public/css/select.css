@@ -1,0 +1,26 @@
+div .split-select{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+}
+
+div .everyone{
+    text-align: center;
+    left: 0;
+}
+
+
+
+
+div .choices{
+    right: 0;
+}
+
+div .normalarea{
+    font-size:30px;
+}
+
+div .selectionarea{
+    font-size: 30px;
+}
+

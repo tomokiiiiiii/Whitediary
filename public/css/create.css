@@ -1,4 +1,5 @@
 div .creatediary{
+	text-align: center;
 }
 
 div .diarybox{
@@ -13,7 +14,8 @@ textarea {
 
 
 div .createback {
-	font-size: 80px;
+	text-align: left;
+	font-size: 40px;
 	left:0;
 	background:#FFFFFF;
 	color:#0F1319;

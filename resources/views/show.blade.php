@@ -4,7 +4,7 @@
     <div class="split-box left-box">
         <h1>日記詳細</h1>
         <div class='diary'>
-            <h2 class='user_id'>{{ $diary->user->name  }}</h2>
+            <div class='showinguser_id'>{{ $diary->user->name  }}</div>
             <p class='updated_at'>{{ $diary->updated_at}}</p>
             @foreach($names as $name)
                 <p class='name'>{{ $name }}</p>
