@@ -10,7 +10,7 @@ class DiaryRequest extends FormRequest
     {
         return [
             //人が３０秒で読むことができるとされている文字数
-            'diary.diary' => 'required|string|max:200',
+            'diary.diary' => 'required|string|max:201',
         ];
     }
 }

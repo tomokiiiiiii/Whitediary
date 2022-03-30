@@ -3,7 +3,7 @@
 @section('content')
     <div class="split-box left-box">
         <h1>日記詳細</h1>
-        <div class='showdiary'>
+        <div class='diary'>
             <h2 class='user_id'>{{ $diary->user->name  }}</h2>
             <p class='updated_at'>{{ $diary->updated_at}}</p>
             @foreach($names as $name)
@@ -14,19 +14,23 @@
         </div>
     </div>
     <div class="split-box right-box">
+    <div class='showdiary'>
         <p class='body'>{{ $diary->diary }}</p>
         {{--like機能--}}
-        <div>
+        <div class="like">
+            <div class="likecount">
+                <a href="/likelist/{{$diary->id}}">{{ $diary->likes->count() }}件のいいね</a>
+            </div>
             @if($diary->is_liked_by_auth_user())
-                <a href="{{ route('diary.unlike', ['id' => $diary->id]) }}" class="btn btn-success btn-sm">いいね</a>
+                <a href="{{ route('diary.unlike', ['id' => $diary->id]) }}" class="btn btn-success btn-lg">いいね</a>
             @else
-                <a href="{{ route('diary.like', ['id' => $diary->id]) }}" class="btn btn-secondary btn-sm">いいね</a>
+                <a href="{{ route('diary.like', ['id' => $diary->id]) }}" class="btn btn-secondary btn-lg">いいね</a>
             @endif
-            <a href="/likelist/{{$diary->id}}">{{ $diary->likes->count() }}</a>
         </div>
         @if ($diary->image_path)
             <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
         @endif
+    </div>
     </div>
 
 @endsection

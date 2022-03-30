@@ -1,1 +1,38 @@
+div .creatediary{
+}
+
+div .diarybox{
+    font-size: 40px;
+}
+
+textarea {
+  resize: none;
+  width:80vw;
+  height:40vh;
+}
+
+
+div .createback {
+	font-size: 80px;
+	left:0;
+	background:#FFFFFF;
+	color:#0F1319;
+}
+
+div .createback a{
+	color:#0F1319;
+	display:inline-block;
+}
+
+div .createback p a{
+	display: inline-block;
+	color: #0f1419;
+	border-radius: 20px; 
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+div .createback p a:hover{
+	background-color: #EAEAEB;
+}
 

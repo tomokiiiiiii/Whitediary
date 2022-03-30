@@ -6,7 +6,7 @@
 }
 
 div .mydiary {
-    
+   font-size: 20px;
    border-radius: 20px;
    transition: .8s;
 	color: #0f1419;
@@ -42,8 +42,55 @@ div .like{
     padding-left:100vh;
 }
 
+div .likecount {
+}
+
+div .likecount a:hover{
+   background:linear-gradient(transparent 90%, #9191a6 0%);
+}
+
+div .delete{
+    padding-right:100vh;
+}
+
+div .delete button{
+    background-color: #FFFFFF;
+    color: #E32E64;
+    border-radius: 20px;
+     border: 0px solid gray;
+}
+
+div .delete button:hover{
+    background-color: #E32E64;
+    color: #FFFFFF;
+    border-radius: 20px;
+     border: 0px solid gray;
+}
+
 div .username a{
     color: #0f1419;
     display: inline-block;
     font-size: 40px;
+}
+
+div .showdiary {
+    font-size: 35px;
+    display:inline-block;
+   border-radius: 20px;
+   transition: .8s;
+	color: #0f1419;
+	padding: 0;
+	text-decoration: none;
+    width: inherit;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid gray;
+    
+}
+
+div .showdiary a{
+	color:#0F1319;
+	text-decoration: none;
 }
