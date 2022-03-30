@@ -1,0 +1,9 @@
+div .followinglist a{
+    color: #0f1419;
+    display: inline-block;
+    font-size: 40px;
+}
+
+div .followedlist{
+    font-size: 40px;
+}
