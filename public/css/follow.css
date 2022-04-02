@@ -1,5 +1,6 @@
 
 
+
 div .followinglist a{
     color: #0f1419;
     display: inline-block;
@@ -8,6 +9,7 @@ div .followinglist a{
 
 div .followedlist{
     font-size: 40px;
+
 }
 
 .listsplit-box{
