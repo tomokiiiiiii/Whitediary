@@ -94,3 +94,71 @@ div .showdiary a{
 	color:#0F1319;
 	text-decoration: none;
 }
+
+@media screen and (max-width: 767px){
+
+
+.diaries{
+    width: 100%;
+}
+
+.own_diaries {
+    width: 90%;
+}
+
+div .mydiary {
+   text-align: center;
+    
+}
+
+div .mydiary a{
+	
+}
+
+
+div .mydiary:hover{
+    
+}
+
+.mydiary p .mypagebody {
+   
+}
+
+div .like{
+    padding-left:0;
+    display: block;
+    text-align: left;
+}
+
+div .likecount {
+}
+
+div .likecount a:hover{
+}
+
+div .delete{
+ 
+}
+
+div .delete button{
+   
+}
+
+div .delete button:hover{
+
+}
+
+div .username a{
+    display: block;
+    text-align: left;
+}
+
+div .showdiary {
+    
+}
+
+div .showdiary a{
+
+}
+
+}

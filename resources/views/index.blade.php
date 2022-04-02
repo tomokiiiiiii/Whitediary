@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+  <div>
     <div class="split-box left-box">
         <p class='follow'><a href='/search'>友達を追加</a></p>
         <p class='mypage'><a href="/mypage/{{Auth::id()}}">自分のページ</a></p>
@@ -17,9 +18,9 @@
                      {{-- showに飛ぶリンク --}}
                     <a href="/select/{{$diary->id}}">
                         <p class='body'>{{ $diary->diary }}</p>
-                    @if($diary->image_path)
+                        @if($diary->image_path)
                         <img width=60% src="{{ $diary->image_path }}" class="img-responsive">
-                    @endif
+                        @endif
                         {{--投稿日時--}}
                         <p class='updated_at'>{{ $diary->updated_at}}</p>
                         {{--like機能--}}
@@ -34,10 +35,11 @@
                     </a>
                 </div>
                 @endforeach
-        </div>        
-         <div class="pagination-lg">
+            </div>        
+        <div class="pagination-lg">
             {{ $diaries->links() }}
         </div>
     </div>
+  </div>
 
 @endsection

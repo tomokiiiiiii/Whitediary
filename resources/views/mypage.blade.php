@@ -8,10 +8,8 @@
             <h1>{{ $user->name }}</h1>
             <p class='follow'><a href='/search'>友達を追加</a></p>
             @if($user->id==$auth_id)
-                <p class='list'>
-                    <a href='/listfollowing'>見たい人リスト</a>
-                    <a href='/listfollowed'>見せたいリスト</a>
-                </p>
+                <p class='listfollowing'><a href='/listfollowing'>見たい人リスト</a></p>
+                <p class='listfollowed'><a href='/listfollowed'>見せたいリスト</a></p>
             @endif
             <p class='home'><a href='/'>日記画面</a></p>
     </div>
@@ -37,13 +35,13 @@
                             {{ $diary->likes->count() }}
                         </div>
                         <div class="delete">
-                        @if($user->id==$auth_id)
-                            <form action="/mypage/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post" style="display:inline">
-                        @csrf
-                        @method('DELETE')
-                            <button type="submit" onClick="delete_alert(event);return false;">記事削除</button>
-                            </form>
-                        @endif
+                            @if($user->id==$auth_id)
+                                <form action="/mypage/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                                <button type="submit" onClick="delete_alert(event);return false;">記事削除</button>
+                                </form>
+                            @endif
                         </div>
                     </a>
                 </div>    

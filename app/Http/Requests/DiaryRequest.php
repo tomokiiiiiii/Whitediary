@@ -13,4 +13,12 @@ class DiaryRequest extends FormRequest
             'diary.diary' => 'required|string|max:201',
         ];
     }
+    
+    public function messages()
+    {
+        return [
+            'diary.diary.required'=>'書いてください',
+            'diary.diary.max'=>'200文字以下にしてください',
+        ];
+    }
 }
