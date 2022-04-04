@@ -61,8 +61,5 @@ class Diary extends Model
     }
    }
    
-   
-   
-   //public function method
 }
 
