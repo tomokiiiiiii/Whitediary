@@ -1,7 +1,7 @@
-div .diaries{
+.diaries{
     width: 90%;
 }
-div .own_diaries {
+.own_diaries {
     width: 90%;
 }
 
@@ -39,8 +39,7 @@ div .mydiary:hover{
 }
 
 div .like{
-    text-align:right;
-    padding:20px;
+    padding-left:100vh;
 }
 
 div .likecount a:hover{
@@ -74,8 +73,8 @@ div .username a{
 div .showdiary {
     font-size: 35px;
     display:inline-block;
-    border-radius: 20px;
-    transition: .8s;
+   border-radius: 20px;
+   transition: .8s;
 	color: #0f1419;
 	padding: 0;
 	text-decoration: none;
@@ -93,14 +92,17 @@ div .showdiary a{
 	text-decoration: none;
 }
 
-
 @media screen and (max-width: 1450px){
+div .like{
+    padding-left:0;
+    display: block;
+    text-align: left;
+}
 
-
-    div .delete{
-        padding-right:0;
-        text-align: left;
-    }
+div .delete{
+    padding-right:0;
+    text-align: left;
+}
 
  
 
@@ -110,31 +112,39 @@ div .showdiary a{
 @media screen and (max-width: 767px){
 
 
-    div .diaries{
-        width: 100%;
-    }
+.diaries{
+    width: 100%;
+}
 
-    div .own_diaries {
-        width: 90%;
-    }
+.own_diaries {
+    width: 90%;
+}
 
-    div .mydiary {
-       text-align: center;
+div .mydiary {
+   text-align: center;
     
-    }
+}
 
 
-    div .left-top{
-        display: flex;
-    }
+div .left-top{
+    display: flex;
+}
 
-    div .left-bottom{
-        display: flex;
-    }
+div .left-bottom{
+    display: flex;
+}
 
-    div .username a{
-        display: block;
-        text-align: left;
-    }
+div .like{
+    padding-left:0;
+    display: block;
+    text-align: left;
+}
+
+
+div .username a{
+    display: block;
+    text-align: left;
+}
 
 }
+

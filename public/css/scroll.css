@@ -4,7 +4,9 @@ html,body{
 	padding:0;
 }
 
-
+* {
+	box-sizing:border-box;
+}
 
 div .split-box{
 	position:absolute;
@@ -37,6 +39,30 @@ div .left-box p a:hover{
 	background-color: #EAEAEB;
 }
 
+div .show-left-box {
+	font-size: 20px;
+	left:0;
+	background:#FFFFFF;
+	color:#0F1319;
+}
+
+div .show-left-box p a{
+	display: inline-block;
+	color: #0f1419;
+	border-radius: 20px; 
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+div .show-left-box a{
+	color:#0F1319;
+	display:inline-block;
+}
+
+div .show-left-box p a:hover{
+	background-color: #EAEAEB;
+}
+
 div .right-box {
 	right:0;
 	overflow-y:scroll;
@@ -54,9 +80,15 @@ div .right-box {
 	}
 
 	div .left-box {
-		display: block;
+		display: flex;
     	padding: 10px;
     	font-size: 3vw;
+	}
+	
+	div .show-left-box{
+		display: block;
+    	padding: 10px;
+    	font-size: 2vw;
 	}
 
 	div .right-box {

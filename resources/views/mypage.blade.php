@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="split-box left-box">
+<div class="split-box show-left-box">
     <div class="left-top">
         @if($user->id==$auth_id)
         <h2>{{$user->id}}</h2>
