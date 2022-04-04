@@ -54,8 +54,6 @@ class DiaryController extends Controller
         $collectalldiaries = collect($indexdiaries);
         $sortalldiaries = $collectalldiaries->sortByDesc('updated_at')->paginate(5);
         
-        
-      
         return view('index')->with(['diaries' => $sortalldiaries]);
     }
     
@@ -85,10 +83,6 @@ class DiaryController extends Controller
             elseif((DB::table('diary_user')->where('diary_id',$diary->id)->exists())&&(!DB::table('diary_user')->where('diary_id',$diary->id)->where('user_id',Auth::id())->exists())){
                 return view('error');
             }
-
-            
-            
-
         }
         
         
@@ -121,14 +115,14 @@ class DiaryController extends Controller
    public function like($id)
    {
      //書き方少し違う
-    Like::create([
-      'diary_id' => $id,
-      'user_id' => Auth::id(),
-    ]);
+        Like::create([
+        'diary_id' => $id,
+        'user_id' => Auth::id(),
+        ]);
 
-    session()->flash('success', 'You Liked the Diary.');
+        session()->flash('success', 'You Liked the Diary.');
 
-    return redirect()->back();
+        return redirect()->back();
     }
   
     //like解除
@@ -150,7 +144,7 @@ class DiaryController extends Controller
             'likelists'=>$likelist,
             'diary'=>$diary,
             'names'=>[],
-            ]);
+        ]);
    }
    
 }

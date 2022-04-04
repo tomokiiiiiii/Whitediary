@@ -1,7 +1,7 @@
-.diaries{
+div .diaries{
     width: 90%;
 }
-.own_diaries {
+div .own_diaries {
     width: 90%;
 }
 
@@ -97,10 +97,10 @@ div .showdiary a{
 @media screen and (max-width: 1450px){
 
 
-div .delete{
-    padding-right:0;
-    text-align: left;
-}
+    div .delete{
+        padding-right:0;
+        text-align: left;
+    }
 
  
 
@@ -110,34 +110,31 @@ div .delete{
 @media screen and (max-width: 767px){
 
 
-.diaries{
-    width: 100%;
-}
+    div .diaries{
+        width: 100%;
+    }
 
-.own_diaries {
-    width: 90%;
-}
+    div .own_diaries {
+        width: 90%;
+    }
 
-div .mydiary {
-   text-align: center;
+    div .mydiary {
+       text-align: center;
     
-}
+    }
 
 
-div .left-top{
-    display: flex;
-}
+    div .left-top{
+        display: flex;
+    }
 
-div .left-bottom{
-    display: flex;
-}
+    div .left-bottom{
+        display: flex;
+    }
 
-
-
-
-div .username a{
-    display: block;
-    text-align: left;
-}
+    div .username a{
+        display: block;
+        text-align: left;
+    }
 
 }

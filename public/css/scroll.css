@@ -4,9 +4,7 @@ html,body{
 	padding:0;
 }
 
-* {
-	box-sizing:border-box;
-}
+
 
 div .split-box{
 	position:absolute;
@@ -48,23 +46,21 @@ div .right-box {
 @media screen and (max-width: 767px){
 
 
-div .split-box{
-	display: block;
-	text-align: center;
-	width:100%;
-	height:100%;
+	div .split-box{
+		display: block;
+		text-align: center;
+		width:100%;
+		height:100%;
+	}
 
-}
+	div .left-box {
+		display: block;
+    	padding: 10px;
+    	font-size: 3vw;
+	}
 
-div .left-box {
-	display: block;
-    padding: 10px;
-    font-size: 3vw;
-
-}
-
-div .right-box {
-    margin-top:100px;
-}
+	div .right-box {
+    	margin-top:100px;
+	}
 
 }

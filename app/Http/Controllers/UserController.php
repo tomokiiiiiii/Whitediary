@@ -14,14 +14,12 @@ class UserController extends Controller
 {
     
   public function mypage(User $user,Request $request,Diary $diary)
-    {
+  {
     $auth_id=Auth::user()->id;
     if($user->id==$auth_id){
       //mypageのユーザーとログイン主が同じだった時の挙動
       $diaries=new Diary;
       $diaries=Diary::where('user_id',Auth::user()->id)->orderBy('updated_at','DESC')->paginate(5);
-      
-      
     }
     
     else{
@@ -30,7 +28,7 @@ class UserController extends Controller
       }
     }
     
-     //mypageのユーザーとログイン主が違う時の挙動
+      //mypageのユーザーとログイン主が違う時の挙動
       //diariestableとdiary_usertableの被り
       $selectdiaries=DB::table('diary_user')->groupBy('diary_id')->get('diary_id');
       $selectdiary_id=[];
@@ -41,43 +39,43 @@ class UserController extends Controller
       //worlddiariesにdiariestableとdiary_usertableを入れる
       $worlddiaries=[];
       //diariestableとdiary_usertableの被りを抜くselectしたidのみ表示
-            $alldiaries=$diary->whereNotIn('id',$selectdiary_id)->where('user_id',$user->id)->get();
-            $follow_user_ids=Auth::user()->follows()->get();
-            $follow_diaries=[];
-            foreach($follow_user_ids as $follow_user_id){
-                array_push($follow_diaries,$follow_user_id->id);
-            }
+      $alldiaries=$diary->whereNotIn('id',$selectdiary_id)->where('user_id',$user->id)->get();
+      $follow_user_ids=Auth::user()->follows()->get();
+      $follow_diaries=[];
+        foreach($follow_user_ids as $follow_user_id){
+          array_push($follow_diaries,$follow_user_id->id);
+        }
         
-            foreach($alldiaries as $alldiary){
-                if(in_array($alldiary->user_id,$follow_diaries)){
-                    array_push($worlddiaries,$alldiary);
-                }else if($alldiary->user_id==Auth::id()){
-                    array_push($worlddiaries,$alldiary);
-                }
+        foreach($alldiaries as $alldiary){
+          if(in_array($alldiary->user_id,$follow_diaries)){
+              array_push($worlddiaries,$alldiary);
+          }else if($alldiary->user_id==Auth::id()){
+              array_push($worlddiaries,$alldiary);
             }
+          }
 
       $yourdiaries=Auth::user()->selectdiaries()->get();
-          foreach($yourdiaries as $yourdiary){
-            array_push($worlddiaries,$yourdiary);
-          }
+        foreach($yourdiaries as $yourdiary){
+          array_push($worlddiaries,$yourdiary);
+        }
     
 
      $collectalldiaries = collect($worlddiaries);
     $diaries = $collectalldiaries->sortByDesc('updated_at')->paginate(5);
 
-  return view('mypage')->with([
-    'user'=>$user,
-    'auth_id'=>$auth_id,
-    'diaries' => $diaries,
+    return view('mypage')->with([
+      'user'=>$user,
+      'auth_id'=>$auth_id,
+      'diaries' => $diaries,
     ]);
     
-    }
+  }
     
   public function delete(Diary $diary_id)
-    {
+  {
     $diary_id->delete();
     return redirect('/');
-    }
+  }
     
   public function search()
   {
@@ -86,9 +84,9 @@ class UserController extends Controller
   
   public function follow(Request $request)
   {
-        $input = $request['search'];
-        $user_id=$input['user_id'];
-        $name=$input['name'];
+      $input = $request['search'];
+      $user_id=$input['user_id'];
+      $name=$input['name'];
         if( DB::table('users')->where('id',$user_id)->where('name',$name)->exists()){
           if(!DB::table('follow_users')->where('following_user_id',Auth::id())->where('followed_user_id',$user_id)->exists()){
             if($user_id!=Auth::id()){
@@ -149,15 +147,15 @@ class UserController extends Controller
       $user->selectdiaries()->attach(['diary_id'=>$latestdiary],['user_id'=>$select_user]);
     }
     return redirect('/select/'.$latestdiary)->with(['latestdiary' => $latestdiary]);
-    }
+  }
     
   public function cancel()
-    {
+  {
     $user=Auth::user();
     $all_diaries=$user->diaries();
     $latestdiary=$all_diaries->orderBy('updated_at','DESC')->limit(1)->first();
     $latestdiary->delete();
     return redirect('/');
-    }
+  }
 }
 
