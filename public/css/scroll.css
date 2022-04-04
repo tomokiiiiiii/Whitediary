@@ -49,6 +49,7 @@ div .right-box {
 
 
 div .split-box{
+	display: block;
 	text-align: center;
 	width:100%;
 	height:100%;
@@ -56,14 +57,14 @@ div .split-box{
 }
 
 div .left-box {
-	display: flex;
+	display: block;
     padding: 10px;
     font-size: 3vw;
 
 }
 
 div .right-box {
-    margin-top:15%;
+    margin-top:100px;
 }
 
 }

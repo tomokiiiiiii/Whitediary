@@ -12,58 +12,52 @@ use App\Like;
 
 class DiaryController extends Controller
 {
-    // public function index(Diary $diary)
-    // {
-    //     //diariestableとdiary_usertableの被り
-    //     $selectdiaries=DB::table('diary_user')->groupBy('diary_id')->get('diary_id');
-    //     $selectdiary_id=[];
-    //     foreach($selectdiaries as $selectdiary){
-    //         array_push($selectdiary_id,$selectdiary->diary_id);
-    //     }
-    //     //worlddiariesにdiariestableとdiary_usertableを入れる
-    //     $worlddiaries=[];
-    //     //diariestableとdiary_usertableの被りを抜く
-    //     $alldiaries=$diary->whereNotIn('id',$selectdiary_id)->get();
-    //     //following(フォローしている人)のidを持ってくる
-    //     $follow_user_ids=Auth::user()->follows()->get();
-    //     //following(フォローしている人)の日記
-    //     $follow_diaries=[];
-    //     foreach($follow_user_ids as $follow_user_id){
-    //         array_push($follow_diaries,$follow_user_id->id);
-    //     }
+    public function index(Diary $diary)
+    {
+        // dd(Auth::user()->checkfollowing(Auth::user()));
         
-    //     foreach($alldiaries as $alldiary){
-    //         if(in_array($alldiary->user_id,$follow_diaries)){
-    //             array_push($worlddiaries,$alldiary);
-    //         }else if($alldiary->user_id==Auth::id()){
-    //             array_push($worlddiaries,$alldiary);
-    //         }
-    //     }
+        $indexdiaries=[];
+        //diarytableがauthuserの日記全部1
+        $authdiaries=$diary->Where('user_id',Auth::id())->get();
+        foreach($authdiaries as $authdiary){
+            array_push($indexdiaries,$authdiary);
+        }
         
-    //     //自分の日記 おかしい
-    //     //mydiariesはselectdiariesだから
-    //     $mydiaries=$diary->whereIn('id',$selectdiary_id)->get();
-    //         $myselectdiaries=$diary->whereNotIn('id',$selectdiary_id)->get('id');
-    //         $myselectdiary_id=[];
-    //             foreach($myselectdiaries as $myselectdiary){
-    //                 array_push($myselectdiary_id,$myselectdiary->id);
-    //             }
-    //         $mydiaries=$diary->whereNotIn('id',array_merge($selectdiary_id,$myselectdiary_id))->where('user_id',Auth::id())->get();
+        //diary_usertableでauthuserがある日記全部2
+        $authdiary_users_id=DB::table('diary_user')->Where('user_id',Auth::id())->get();
+        foreach($authdiary_users_id as $authdiary_user_id){
+            $authdiary_user=$diary->Where('id',$authdiary_user_id->diary_id)->first();
+            array_push($indexdiaries,$authdiary_user);
+        }
         
-    //     //見せられる日記 他人
-    //     $yourdiaries=Auth::user()->selectdiaries()->get();
-    //     foreach($yourdiaries as $yourdiary){
-    //         array_push($worlddiaries,$yourdiary);
-    //     }
-    //     foreach($mydiaries as $mydiary){
-    //         array_push($worlddiaries,$mydiary);
-    //     }
-            
-    //     $collectalldiaries = collect($worlddiaries);
-    //     $sortalldiaries = $collectalldiaries->sortByDesc('updated_at')->paginate(5);
+        //diary_usertableにないfollowしている人の日記全部
+        //follow_usersの友達追加した人のid
+        $following_users_id=DB::table('follow_users')->Where('following_user_id',Auth::id())->get('followed_user_id');
+        $following_users=[];
+        foreach($following_users_id as $following_user_id){
+            array_push($following_users,$following_user_id->followed_user_id);
+        }
+        
+        //diary_usertableにある日記全て
+        $alldiaries_user_id=DB::table('diary_user')->get('diary_id');
+        $alldiaries_user=[];
+        foreach($alldiaries_user_id as $alldiary_user_id){
+            array_push($alldiaries_user,$alldiary_user_id->diary_id);
+        }
+        
+        //diary_usertableを除いたfollowしている人の日記3
+        $alldiaries=$diary->WhereNotIn('id',$alldiaries_user)->Where('user_id',$following_users)->get();
+        foreach($alldiaries as $alldiary){
+            array_push($indexdiaries,$alldiary);
+        }
+        //123の日記合体
+        $collectalldiaries = collect($indexdiaries);
+        $sortalldiaries = $collectalldiaries->sortByDesc('updated_at')->paginate(5);
+        
+        
       
-    //     return view('index')->with(['diaries' => $sortalldiaries]);
-    // }
+        return view('index')->with(['diaries' => $sortalldiaries]);
+    }
     
     
     public function show(Diary $diary)
@@ -78,18 +72,31 @@ class DiaryController extends Controller
             $user_name=$user->where('id',$user_id->user_id)->first()->name;
             array_push($name,$user_name);
         }
-
         return view('show')->with([
             'diary'=>$diary,
             'names'=>$name,
-            ]);
+        ]);
         }
+        
+        else{
+            if(!DB::table('follow_users')->where('following_user_id',Auth::id())->where('followed_user_id',$diary->user_id)->exists()){
+                return view('error');
+            }
+            elseif((DB::table('diary_user')->where('diary_id',$diary->id)->exists())&&(!DB::table('diary_user')->where('diary_id',$diary->id)->where('user_id',Auth::id())->exists())){
+                return view('error');
+            }
+
+            
+            
+
+        }
+        
         
         //showのユーザーとログイン主が違う時の挙動
         return view('show')->with([
             'diary'=>$diary,
             'names'=>[],
-            ]);
+        ]);
     }
     
     public function create()
@@ -146,48 +153,4 @@ class DiaryController extends Controller
             ]);
    }
    
-   public function index(Diary $diary)
-    {
-        $indexdiaries=[];
-        //diarytableがauthuserの日記全部1
-        $authdiaries=$diary->Where('user_id',Auth::id())->get();
-        foreach($authdiaries as $authdiary){
-            array_push($indexdiaries,$authdiary);
-        }
-        
-        //diary_usertableでauthuserがある日記全部2
-        $authdiary_users_id=DB::table('diary_user')->Where('user_id',Auth::id())->get();
-        foreach($authdiary_users_id as $authdiary_user_id){
-            $authdiary_user=$diary->Where('id',$authdiary_user_id->diary_id)->first();
-            array_push($indexdiaries,$authdiary_user);
-        }
-        
-        //diary_usertableにないfollowしている人の日記全部
-        //follow_usersの友達追加した人のid
-        $following_users_id=DB::table('follow_users')->Where('following_user_id',Auth::id())->get('followed_user_id');
-        $following_users=[];
-        foreach($following_users_id as $following_user_id){
-            array_push($following_users,$following_user_id->followed_user_id);
-        }
-        
-        //diary_usertableにある日記全て
-        $alldiaries_user_id=DB::table('diary_user')->get('diary_id');
-        $alldiaries_user=[];
-        foreach($alldiaries_user_id as $alldiary_user_id){
-            array_push($alldiaries_user,$alldiary_user_id->diary_id);
-        }
-        
-        //diary_usertableを除いたfollowしている人の日記3
-        $alldiaries=$diary->WhereNotIn('id',$alldiaries_user)->Where('user_id',$following_users)->get();
-        foreach($alldiaries as $alldiary){
-            array_push($indexdiaries,$alldiary);
-        }
-        //123の日記合体
-        $collectalldiaries = collect($indexdiaries);
-        $sortalldiaries = $collectalldiaries->sortByDesc('updated_at')->paginate(5);
-        
-        
-      
-        return view('index')->with(['diaries' => $sortalldiaries]);
-    }
 }

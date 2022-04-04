@@ -2,16 +2,20 @@
 
 @section('content')
     <div class="split-box left-box">
+        <div class="left-top">
             @if($user->id==$auth_id)
             <h2>{{$user->id}}</h2>
             @endif
             <h1>{{ $user->name }}</h1>
+        </div>
+        <div class="left-bottom">
             <p class='follow'><a href='/search'>友達を追加</a></p>
             @if($user->id==$auth_id)
                 <p class='listfollowing'><a href='/listfollowing'>見たい人リスト</a></p>
                 <p class='listfollowed'><a href='/listfollowed'>見せたいリスト</a></p>
             @endif
             <p class='home'><a href='/'>日記画面</a></p>
+        </div>
     </div>
     <div class="split-box right-box">
         <div class='own_diaries'>

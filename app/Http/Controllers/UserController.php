@@ -23,18 +23,24 @@ class UserController extends Controller
       
       
     }
-     //mypageのユーザーとログイン主が違う時の挙動
+    
     else{
+      if(!DB::table('follow_users')->where('following_user_id',Auth::id())->where('followed_user_id',$user->id)->exists()){
+        return view('error');
+      }
+    }
+    
+     //mypageのユーザーとログイン主が違う時の挙動
       //diariestableとdiary_usertableの被り
       $selectdiaries=DB::table('diary_user')->groupBy('diary_id')->get('diary_id');
-        $selectdiary_id=[];
-            foreach($selectdiaries as $selectdiary){
-                array_push($selectdiary_id,$selectdiary->diary_id);
-            }
+      $selectdiary_id=[];
+      foreach($selectdiaries as $selectdiary){
+        array_push($selectdiary_id,$selectdiary->diary_id);
+      }
 
-        //worlddiariesにdiariestableとdiary_usertableを入れる
-        $worlddiaries=[];
-            //diariestableとdiary_usertableの被りを抜くselectしたidのみ表示
+      //worlddiariesにdiariestableとdiary_usertableを入れる
+      $worlddiaries=[];
+      //diariestableとdiary_usertableの被りを抜くselectしたidのみ表示
             $alldiaries=$diary->whereNotIn('id',$selectdiary_id)->where('user_id',$user->id)->get();
             $follow_user_ids=Auth::user()->follows()->get();
             $follow_diaries=[];
@@ -50,18 +56,15 @@ class UserController extends Controller
                 }
             }
 
-$yourdiaries=Auth::user()->selectdiaries()->get();
-            foreach($yourdiaries as $yourdiary){
-                array_push($worlddiaries,$yourdiary);
-            }
-            
-          
+      $yourdiaries=Auth::user()->selectdiaries()->get();
+          foreach($yourdiaries as $yourdiary){
+            array_push($worlddiaries,$yourdiary);
+          }
+    
 
- $collectalldiaries = collect($worlddiaries);
-  $diaries = $collectalldiaries->sortByDesc('updated_at')->paginate(5);
+     $collectalldiaries = collect($worlddiaries);
+    $diaries = $collectalldiaries->sortByDesc('updated_at')->paginate(5);
 
-
-    }
   return view('mypage')->with([
     'user'=>$user,
     'auth_id'=>$auth_id,

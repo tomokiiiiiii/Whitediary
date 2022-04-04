@@ -39,10 +39,8 @@ div .mydiary:hover{
 }
 
 div .like{
-    padding-left:100vh;
-}
-
-div .likecount {
+    text-align:right;
+    padding:20px;
 }
 
 div .likecount a:hover{
@@ -57,14 +55,14 @@ div .delete button{
     background-color: #FFFFFF;
     color: #E32E64;
     border-radius: 20px;
-     border: 0px solid gray;
+    border: 0px solid gray;
 }
 
 div .delete button:hover{
     background-color: #E32E64;
     color: #FFFFFF;
     border-radius: 20px;
-     border: 0px solid gray;
+    border: 0px solid gray;
 }
 
 div .username a{
@@ -76,8 +74,8 @@ div .username a{
 div .showdiary {
     font-size: 35px;
     display:inline-block;
-   border-radius: 20px;
-   transition: .8s;
+    border-radius: 20px;
+    transition: .8s;
 	color: #0f1419;
 	padding: 0;
 	text-decoration: none;
@@ -95,6 +93,20 @@ div .showdiary a{
 	text-decoration: none;
 }
 
+
+@media screen and (max-width: 1450px){
+
+
+div .delete{
+    padding-right:0;
+    text-align: left;
+}
+
+ 
+
+}
+
+
 @media screen and (max-width: 767px){
 
 
@@ -111,54 +123,21 @@ div .mydiary {
     
 }
 
-div .mydiary a{
-	
+
+div .left-top{
+    display: flex;
+}
+
+div .left-bottom{
+    display: flex;
 }
 
 
-div .mydiary:hover{
-    
-}
 
-.mydiary p .mypagebody {
-   
-}
-
-div .like{
-    padding-left:0;
-    display: block;
-    text-align: left;
-}
-
-div .likecount {
-}
-
-div .likecount a:hover{
-}
-
-div .delete{
- 
-}
-
-div .delete button{
-   
-}
-
-div .delete button:hover{
-
-}
 
 div .username a{
     display: block;
     text-align: left;
-}
-
-div .showdiary {
-    
-}
-
-div .showdiary a{
-
 }
 
 }
