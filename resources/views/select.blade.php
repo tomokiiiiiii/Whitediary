@@ -19,7 +19,7 @@
         <button onclick="unChecked()">全解除</button>
     </p>
     　　<form action="/select_user" method="POST">
-        {{ csrf_field() }}
+        @csrf
         @foreach($followed_users_id as $followed_user_id)
             <label>
                 <input type="checkbox" value="{{ $followed_user_id->id }}" name="users_array[]">
