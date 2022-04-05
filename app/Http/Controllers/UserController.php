@@ -20,6 +20,12 @@ class UserController extends Controller
       //mypageのユーザーとログイン主が同じだった時の挙動
       $diaries=new Diary;
       $diaries=Diary::where('user_id',Auth::user()->id)->orderBy('updated_at','DESC')->paginate(5);
+      
+      return view('mypage')->with([
+      'user'=>$user,
+      'auth_id'=>$auth_id,
+      'diaries' => $diaries,
+      ]);
     }
     
     else{
