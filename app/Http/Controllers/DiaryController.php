@@ -105,8 +105,8 @@ class DiaryController extends Controller
         $diary->fill($input);
         $image = $request->file('image');
         if(isset($image)){
-        $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
-        $diary->image_path = Storage::disk('s3')->url($path);
+            $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+            $diary->image_path = Storage::disk('s3')->url($path);
         }
         $diary->save();
         return redirect("/select");
